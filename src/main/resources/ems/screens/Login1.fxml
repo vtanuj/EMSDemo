@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.controlsfx.glyphfont.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="pane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../media/css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ems.screens.LoginController">
+   <children>
+      <Button fx:id="btnLogin" id="" layoutX="306.0" layoutY="285.0" mnemonicParsing="false" onAction="#onLoginClick" text="Login" />
+      <Label id="label" layoutX="173.0" layoutY="162.0" text="Username" />
+      <Label id="label" layoutX="173.0" layoutY="229.0" text="Password" />
+      <TextField layoutX="306.0" layoutY="229.0" />
+      <TextField layoutX="306.0" layoutY="162.0" />
+      <ImageView fx:id="loginImage" fitHeight="84.0" fitWidth="149.0" layoutX="15.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="loginHeader" alignment="CENTER" layoutX="145.0" layoutY="35.0" prefHeight="75.0" prefWidth="445.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Glyph fx:id="aaa" layoutX="81.0" layoutY="294.0" prefHeight="17.0" prefWidth="207.0" />
+   </children>
+</AnchorPane>

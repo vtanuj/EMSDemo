@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="214.0" prefWidth="598.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ems.screens.AboutController">
+   <children>
+      <Pane prefHeight="225.0" prefWidth="600.0" style="-fx-background-color: white;">
+         <children>
+            <Button fx:id="closeButton" contentDisplay="CENTER" layoutX="347.0" layoutY="178.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="25.0" prefWidth="74.0" text="Close" />
+            <ImageView fx:id="aboutImage" fitHeight="153.0" fitWidth="150.0" layoutX="23.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="version" layoutX="347.0" layoutY="129.0" prefHeight="17.0" prefWidth="262.0" />
+            <Label layoutX="258.0" layoutY="129.0" text="Version: " />
+            <Label fx:id="headerAbout" layoutX="226.0" layoutY="30.0" prefHeight="40.0" prefWidth="362.0">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="258.0" layoutY="85.0" text="Vendor:" />
+            <Label fx:id="vendor" layoutX="347.0" layoutY="85.0" prefHeight="17.0" prefWidth="262.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

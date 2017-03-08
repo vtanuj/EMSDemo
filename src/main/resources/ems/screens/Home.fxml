@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.controlsfx.glyphfont.*?>
+<?import org.controlsfx.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="ap1" fx:id="ap" prefHeight="600.0" prefWidth="800.0" stylesheets="@../media/css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ems.screens.HomeController">
+    <children>
+        <MenuBar blendMode="DARKEN" prefHeight="605.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onCloseClick" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onAboutClick" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Pane layoutX="2.0" layoutY="24.0" prefHeight="600.0" prefWidth="802.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <children>
+                <ImageView fx:id="homeImage" fitHeight="101.0" fitWidth="192.0" layoutX="16.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                <Label fx:id="headerHome" alignment="CENTER" layoutX="173.0" layoutY="13.0" prefHeight="75.0" prefWidth="488.0" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                </Label>
+                <TreeView fx:id="treeView" layoutY="121.0" onMouseClicked="#onTreeViewClick" prefHeight="454.0" prefWidth="196.0" />
+                <AnchorPane layoutX="205.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <AnchorPane fx:id="dashboard" disable="true" prefHeight="423.0" prefWidth="595.0" visible="false">
+                            <children>
+                                <BarChart fx:id="barChart" layoutX="72.0" layoutY="83.0" prefHeight="150.0" prefWidth="543.0">
+                                    <xAxis>
+                                        <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                    </yAxis>
+                                </BarChart>
+                                <Label layoutX="272.0" layoutY="28.0" minHeight="-Infinity" minWidth="-Infinity" text="Dashboard" textFill="#575757">
+                                    <font>
+                                        <Font size="38.0" />
+                                    </font>
+                                </Label>
+                                <PieChart fx:id="pieChart" layoutX="53.0" layoutY="212.0" prefHeight="192.0" prefWidth="530.0" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="reports" prefHeight="423.0" prefWidth="595.0" visible="false">
+                            <children>
+                                <ComboBox fx:id="reportType" layoutX="120.0" layoutY="15.0" prefHeight="25.0" prefWidth="184.0" promptText="Choose Report" />
+                                <Label layoutX="45.0" layoutY="19.0" text="Report Type:" />
+                                <Label layoutX="321.0" layoutY="19.0" text="Booth No.:" />
+                                <ComboBox fx:id="boothNo" layoutX="394.0" layoutY="15.0" prefHeight="25.0" prefWidth="184.0" promptText="Choose Booth No." />
+                                <Button fx:id="reportGo" layoutX="249.0" layoutY="110.0" mnemonicParsing="false" onAction="#onReportGoClick" text="Go" />
+                                <TableView fx:id="reportTable" layoutY="178.0" prefHeight="245.0" prefWidth="595.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="178.0">
+                                    <columns>
+                                        <TableColumn fx:id="reportColumn1" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn2" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn3" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn4" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn5" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn6" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn7" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn8" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn9" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn10" prefWidth="75.0" />
+                                        <TableColumn fx:id="reportColumn11" prefWidth="75.0" />
+                                    </columns>              
+                                </TableView>
+                                <Button fx:id="reportClear" layoutX="321.0" layoutY="110.0" mnemonicParsing="false" onAction="#onReportClearClick" text="Clear" />
+                                <Button fx:id="reportExportCSV" layoutX="460.0" layoutY="148.0" mnemonicParsing="false" onAction="#onReportCSVDownload" text="CSV" />
+                                <Button fx:id="reportExportPDF" layoutX="526.0" layoutY="148.0" mnemonicParsing="false" onAction="#onReportPDFDownload" text="PDF" />
+                                <Label fx:id="fromAgeLabel" layoutX="45.0" layoutY="68.0" text="From Age:" visible="false" />
+                                <Label fx:id="toAgeLabel" layoutX="321.0" layoutY="68.0" text="To Age:" visible="false" />
+                                <TextField fx:id="fromAgeTextField" layoutX="120.0" layoutY="64.0" prefHeight="25.0" prefWidth="184.0" visible="false" />
+                                <TextField fx:id="toAgeTextField" layoutX="394.0" layoutY="64.0" prefHeight="25.0" prefWidth="184.0" visible="false" />
+                                <Label fx:id="monthLabel" layoutX="45.0" layoutY="68.0" text="Month:" visible="false" />
+                                <ComboBox fx:id="monthCombo" layoutX="120.0" layoutY="61.0" prefHeight="25.0" prefWidth="184.0" promptText="Choose Month" visible="false" />
+                                <Label fx:id="dateLabel" layoutX="45.0" layoutY="60.0" prefHeight="17.0" prefWidth="65.0" text="Date:" visible="false" />
+                                <DatePicker fx:id="datePicker" layoutX="120.0" layoutY="56.0" prefHeight="25.0" prefWidth="184.0" visible="false" />
+                                <Label fx:id="colorLabel" layoutX="45.0" layoutY="60.0" text="Color: " visible="false" />
+                                <ComboBox fx:id="colorCombo" layoutX="120.0" layoutY="56.0" prefHeight="25.0" prefWidth="184.0" promptText="Choose Color" visible="false" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="voterSearchUpdate" prefHeight="423.0" prefWidth="595.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <RadioButton fx:id="radioName" layoutX="182.0" layoutY="20.0" mnemonicParsing="false" selected="true" text="Name" />
+                                <RadioButton fx:id="radioID" layoutX="262.0" layoutY="21.0" mnemonicParsing="false" text="ID Card No" />
+                                <RadioButton fx:id="radioSr" layoutX="357.0" layoutY="21.0" mnemonicParsing="false" text="Sr. No." />
+                                <Label fx:id="fNameLabel" layoutX="54.0" layoutY="60.0" text="First Name:" />
+                                <TextField fx:id="fNameTextField" layoutX="133.0" layoutY="56.0" />
+                                <Label fx:id="lNameLabel" layoutX="317.0" layoutY="60.0" text="Last Name:" />
+                                <TextField fx:id="lNameTextField" layoutX="392.0" layoutY="56.0" />
+                                <Label fx:id="IDLabel" layoutX="209.0" layoutY="60.0" text="ID Card No.:" visible="false" />
+                                <TextField fx:id="IDTextField" layoutX="298.0" layoutY="56.0" visible="false" />
+                                <Button fx:id="voterGo" layoutX="246.0" layoutY="94.0" mnemonicParsing="false" onAction="#onVoterGoClick" text="Go" />
+                                <Button fx:id="voterClear" layoutX="325.0" layoutY="94.0" mnemonicParsing="false" onAction="#onVoterClearClick" text="Clear" />
+                                <TableView fx:id="voterTable" layoutY="139.0" onMouseClicked="#onVoterTableClicked" prefHeight="283.0" prefWidth="595.0">
+                                    <columns>
+                                        <TableColumn fx:id="voterColumn1" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn2" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn3" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn4" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn5" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn6" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn7" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn8" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn9" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn10" prefWidth="75.0" />
+                                        <TableColumn fx:id="voterColumn11" prefWidth="75.0" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="electionHistory" layoutX="20.0" layoutY="66.0" prefHeight="423.0" prefWidth="595.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <Label layoutX="181.0" layoutY="26.0" text="Ward No.:" />
+                                <ComboBox fx:id="wardNo" layoutX="265.0" layoutY="22.0" prefWidth="150.0" />
+                                <Button fx:id="electionHistoryGo" layoutX="265.0" layoutY="65.0" mnemonicParsing="false" onAction="#onElectionHistoryGoClick"  text="Go" />
+                                <Button fx:id="electionHistoryClear" layoutX="340.0" layoutY="65.0" mnemonicParsing="false" onAction="#onElectionHistoryClearClick"  text="Clear" />
+                                <TableView fx:id="electionHistoryTable" layoutY="118.0" prefHeight="304.0" prefWidth="595.0">
+                                    <columns>
+                                        <TableColumn fx:id="electionHistoryColumn1" prefWidth="75.0" />
+                                        <TableColumn fx:id="electionHistoryColumn2" prefWidth="75.0" />
+                                        <TableColumn fx:id="electionHistoryColumn3" prefWidth="75.0" />
+                                        <TableColumn fx:id="electionHistoryColumn4" prefWidth="75.0" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

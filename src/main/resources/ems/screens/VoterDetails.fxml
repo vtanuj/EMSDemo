@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ems.screens.VoterDetailsController">
+   <children>
+      <Label layoutX="31.0" layoutY="53.0" text="Ward No.:" />
+      <Label layoutX="110.0" layoutY="53.0" prefHeight="17.0" prefWidth="69.0" text="Label" />
+      <Label layoutX="216.0" layoutY="2.0" text="Voter Details">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="80.0" text="Ward Sr. No.:" />
+      <Label layoutX="110.0" layoutY="80.0" prefHeight="17.0" prefWidth="69.0" text="Label" />
+      <Label layoutX="223.0" layoutY="80.0" text="New Sr. No.:" />
+      <Label layoutX="300.0" layoutY="80.0" prefHeight="17.0" prefWidth="80.0" text="Label" />
+      <Label layoutX="223.0" layoutY="53.0" text="Acc No.:" />
+      <Label layoutX="300.0" layoutY="53.0" prefHeight="17.0" prefWidth="69.0" text="Label" />
+      <ImageView fitHeight="118.0" fitWidth="115.0" layoutX="457.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../media/images/user.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="29.0" layoutY="106.0" text="Voters Name: " />
+      <Label layoutX="110.0" layoutY="106.0" prefHeight="17.0" prefWidth="292.0" text="Label" />
+      <Label layoutX="31.0" layoutY="137.0" text="Address:" />
+      <Label layoutX="110.0" layoutY="137.0" prefHeight="79.0" prefWidth="154.0" text="Label" textAlignment="JUSTIFY" />
+      <Label layoutX="300.0" layoutY="137.0" text="Matdan Kendra:" />
+      <Label layoutX="411.0" layoutY="137.0" prefHeight="79.0" prefWidth="163.0" text="Label" textAlignment="JUSTIFY" />
+      <Label layoutX="32.0" layoutY="232.0" text="Email Id:" />
+      <TextField layoutX="113.0" layoutY="228.0" prefHeight="25.0" prefWidth="292.0" />
+      <TextField layoutX="113.0" layoutY="268.0" />
+      <Label layoutX="32.0" layoutY="272.0" text="Mobile No.:" />
+      <Label layoutX="288.0" layoutY="272.0" text="Alternate Mobile No.:" />
+      <TextField layoutX="418.0" layoutY="268.0" prefHeight="25.0" prefWidth="163.0" />
+      <Label layoutX="32.0" layoutY="311.0" text="Date of Birth:" />
+      <Label layoutX="113.0" layoutY="311.0" prefHeight="17.0" prefWidth="85.0" text="Label" />
+      <Label layoutX="288.0" layoutY="311.0" text="Gender/Age:" />
+      <Label layoutX="418.0" layoutY="311.0" prefHeight="17.0" prefWidth="65.0" text="Label" />
+      <Label layoutX="32.0" layoutY="339.0" text="ID Card No.:" />
+      <Label layoutX="113.0" layoutY="339.0" prefHeight="17.0" prefWidth="149.0" text="Label" />
+      <Label layoutX="288.0" layoutY="339.0" text="Community:" />
+      <Label layoutX="418.0" layoutY="339.0" prefHeight="17.0" prefWidth="163.0" text="Label" />
+      <Button layoutX="210.0" layoutY="369.0" mnemonicParsing="false" text="Update" />
+      <Button layoutX="309.0" layoutY="369.0" mnemonicParsing="false" text="Cancel" />
+   </children>
+</AnchorPane>
