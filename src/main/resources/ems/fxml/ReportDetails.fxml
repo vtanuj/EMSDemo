@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ems.controller.ReportController">
+    <children>
+        <TableView fx:id="reportTable" onMouseClicked="#onReportDetailsTableClicked" layoutY="52.0" prefHeight="548.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+            <columns>          
+                <TableColumn fx:id="reportColumn1" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn2" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn3" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn4" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn5" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn6" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn7" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn8" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn9" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn10" prefWidth="75.0" />
+                <TableColumn fx:id="reportColumn11" prefWidth="75.0" />
+            </columns>
+        </TableView>
+        <Button fx:id="reportExportCSV" layoutX="220.0" layoutY="14.0" mnemonicParsing="false" text="CSV" />
+        <Button fx:id="reportExportExcel" layoutX="320.0" layoutY="14.0" mnemonicParsing="false" text="Excel" />
+        <Button fx:id="reportExportPDF" layoutX="420.0" layoutY="14.0" mnemonicParsing="false" text="PDF" />
+    </children>
+</AnchorPane>

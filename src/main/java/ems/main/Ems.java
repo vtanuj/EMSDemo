@@ -5,17 +5,16 @@
  */
 package ems.main;
 
-import static ems.utils.Constants.HEADER_SPLASH;
-import static ems.utils.Constants.IMAGE_FAVICON;
-import static ems.utils.Constants.IMAGE_SPLASH;
-import static ems.utils.Constants.PATH_AUTH_DB;
-import static ems.utils.Constants.PATH_TEMP;
-import static ems.utils.Constants.PATH_TEMP_DB_;
-import static ems.utils.Constants.TITLE_HOME;
-import ems.utils.MyUtils;
+import static ems.util.Constants.HEADER_SPLASH;
+import static ems.util.Constants.IMAGE_FAVICON;
+import static ems.util.Constants.IMAGE_SPLASH;
+import static ems.util.Constants.PATH_AUTH_DB;
+import static ems.util.Constants.PATH_TEMP;
+import static ems.util.Constants.PATH_TEMP_DB_;
+import static ems.util.Constants.TITLE_HOME;
+import ems.util.MyUtils;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.IOException;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.animation.FadeTransition;
@@ -27,13 +26,14 @@ import javafx.geometry.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 import javafx.util.Duration;
-import org.controlsfx.glyphfont.GlyphFontRegistry;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -53,8 +53,7 @@ public class Ems extends Application {
     private Label header;
     private static final int SPLASH_WIDTH = 500;
     private static final int SPLASH_HEIGHT = 350;
-
-    
+    public static Logger log = Logger.getLogger(Ems.class);
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -134,15 +133,27 @@ public class Ems extends Application {
 
     private void showLoginStage(Stage stage) {
         try {
-            Stage loginStage = new Stage(StageStyle.DECORATED);
-            Parent root = FXMLLoader.load(getClass().getResource("/ems/screens/Login1.fxml"));
-            Scene scene = new Scene(root);
-            loginStage.setTitle(TITLE_HOME);
-            loginStage.setScene(scene);
-            loginStage.getIcons().add(new Image(IMAGE_FAVICON));
-            loginStage.show();
-        } catch (Exception ex) {
-            Logger.getLogger(Ems.class.getName()).log(Level.SEVERE, null, ex);
+            if (MyUtils.checkIfAlreadyRunning()) {
+                log.error("Application is already running.");
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Application already running!");
+                alert.setContentText("An instance of the application is already running. "
+                        + "Please close all the instances and run again.");
+                alert.show();
+            } else {
+                log.info("Application started.");
+                Stage loginStage = new Stage(StageStyle.DECORATED);
+                Parent root = FXMLLoader.load(getClass().getResource("/ems/fxml/Login.fxml"));
+                Scene scene = new Scene(root);
+                loginStage.setTitle(TITLE_HOME);
+                loginStage.setScene(scene);
+                loginStage.getIcons().add(new Image(IMAGE_FAVICON));
+                loginStage.show();
+            }
+        } catch (IOException ex) {
+            log.error(ex.getMessage());
         }
     }
 
@@ -160,7 +171,7 @@ public class Ems extends Application {
                 fadeSplash.setOnFinished(actionEvent -> initStage.hide());
                 fadeSplash.play();
                 initCompletionHandler.complete();
-            } // todo add code to gracefully handle other task states.
+            }
         });
 
         Scene splashScene = new Scene(splashLayout, Color.TRANSPARENT);

@@ -5,7 +5,8 @@
  */
 package ems.task;
 
-import ems.utils.DataHandler;
+import static ems.main.Ems.log;
+import ems.util.DataHandler;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.scene.control.Alert;
@@ -41,7 +42,7 @@ public class Reports extends Task<Void> {
         try {
             DataHandler.getReport(params);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         }
         return null;
     }
