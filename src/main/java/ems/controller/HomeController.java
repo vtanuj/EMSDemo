@@ -571,12 +571,18 @@ public class HomeController implements Initializable {
             nodeItemB.getChildren().addAll(nodeItemB1, nodeItemB2);
 
             TreeItem<String> nodeItemC = new TreeItem<>("Reports");
-            TreeItem<String> nodeItemD = new TreeItem<>("Sync");
-            TreeItem<String> nodeItemE = new TreeItem<>("Ward Management");
-            TreeItem<String> nodeItemF = new TreeItem<>("SMS");
-            TreeItem<String> nodeItemG = new TreeItem<>("Application Update");
+            TreeItem<String> nodeItemD = new TreeItem<>("Ward Management");
+            TreeItem<String> nodeItemE = new TreeItem<>("SMS");
+
+            TreeItem<String> nodeItemF = new TreeItem<>("Admin");
+            TreeItem<String> nodeItemF1 = new TreeItem<>("Change Password");
+            TreeItem<String> nodeItemF2 = new TreeItem<>("DB Backup");
+            TreeItem<String> nodeItemF3 = new TreeItem<>("DB Import");
+            TreeItem<String> nodeItemF4 = new TreeItem<>("Sync");
+            nodeItemF.getChildren().addAll(nodeItemF1, nodeItemF2, nodeItemF3, nodeItemF4);
+
             rootNode.getChildren().addAll(nodeItemA, nodeItemB, nodeItemC, nodeItemD, nodeItemE,
-                    nodeItemF, nodeItemG);
+                    nodeItemF);
 
             treeView.setRoot(rootNode);
         } catch (Exception e) {
@@ -646,7 +652,6 @@ public class HomeController implements Initializable {
 //        tl.setCycleCount(Animation.INDEFINITE);
 //        tl.setAutoReverse(true);
 //        tl.play();
-
     }
 
     @FXML

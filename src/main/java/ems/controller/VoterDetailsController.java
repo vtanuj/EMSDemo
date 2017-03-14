@@ -8,6 +8,7 @@ package ems.controller;
 import static ems.main.Ems.log;
 import ems.model.MyModel;
 import ems.model.MyModelConverter;
+import static ems.util.Constants.COLORS;
 import static ems.util.Constants.GENDER;
 import ems.util.DataHandler;
 import ems.util.DateUtils;
@@ -16,6 +17,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -51,6 +53,8 @@ public class VoterDetailsController implements Initializable {
     @FXML
     private Label name;
     @FXML
+    private Label nameUnicode;
+    @FXML
     private Label address;
     @FXML
     private Label boothName;
@@ -74,6 +78,10 @@ public class VoterDetailsController implements Initializable {
     private final ObservableList<MyModel> communityData = FXCollections.observableArrayList();
 
     @FXML
+    private ComboBox<MyModel> color;
+    private final ObservableList<MyModel> colorData = FXCollections.observableArrayList();
+
+    @FXML
     private Button cancelButton;
     @FXML
     private Button updateButton;
@@ -83,9 +91,9 @@ public class VoterDetailsController implements Initializable {
     public void initVoterDetails(MyModel voterDetails) {
         this.voterDetails = voterDetails;
         wardNo.setText(voterDetails.getObj1());
-        wardSrNo.setText(voterDetails.getObj2());
-        srNo.setText(voterDetails.getObj3());
-        accNo.setText(voterDetails.getObj4());
+        accNo.setText(voterDetails.getObj2());
+        wardSrNo.setText(voterDetails.getObj3());
+        srNo.setText(voterDetails.getObj4());
         name.setText(voterDetails.getObj5());
         address.setText(voterDetails.getObj6());
         boothName.setText(voterDetails.getObj7());
@@ -105,6 +113,28 @@ public class VoterDetailsController implements Initializable {
         if (voterDetails.getObj15() != null && !voterDetails.getObj15().isEmpty()) {
             community.setValue(new MyModel(voterDetails.getObj15(), voterDetails.getObj15()));
         }
+
+        if (voterDetails.getObj16() != null && !voterDetails.getObj16().isEmpty()) {
+            String colorName = "";
+            switch (voterDetails.getObj16()) {
+                case "1":
+                    colorName = "Our";
+                    break;
+                case "2":
+                    colorName = "Opposite";
+                    break;
+                case "3":
+                    colorName = "Unpredictable";
+                    break;
+                case "4":
+                    colorName = "Others";
+                    break;
+            }
+            color.setValue(new MyModel(voterDetails.getObj16(), colorName));
+        }
+
+        nameUnicode.setText(voterDetails.getObj17());
+
     }
 
     /**
@@ -135,22 +165,33 @@ public class VoterDetailsController implements Initializable {
             }
         });
 
-        dateOfBirth.setOnAction(event -> {
-            LocalDate date = dateOfBirth.getValue();
-            log.info("Selected date: " + date);
-            try {
-                String calculatedAge = DateUtils.calculateAge(date.toString());
-                age.setText(calculatedAge);
-            } catch (ParseException ex) {
-                log.error(ex.getMessage());
-            }
-        });
-
+//        dateOfBirth.setOnAction(event -> {
+//            LocalDate date = dateOfBirth.getValue();
+//            log.info("Selected date: " + date);
+//            try {
+//                String calculatedAge = DateUtils.calculateAge(date.toString());
+//                age.setText(calculatedAge);
+//            } catch (ParseException ex) {
+//                log.error(ex.getMessage());
+//            }
+//        });
         gender.setConverter(new MyModelConverter());
         for (MyModel report : GENDER) {
             genderData.add(report);
         }
         gender.setItems(genderData);
+
+        color.setConverter(new MyModelConverter());
+
+        List<MyModel> COLORS = new LinkedList<>();
+        COLORS.add(new MyModel("1", "Our"));
+        COLORS.add(new MyModel("2", "Opposite"));
+        COLORS.add(new MyModel("3", "Unpredictable"));
+        COLORS.add(new MyModel("4", "Others"));
+        for (MyModel report : COLORS) {
+            colorData.add(report);
+        }
+        color.setItems(colorData);
 
         community.setConverter(new MyModelConverter());
         List<MyModel> communityList = DataHandler.getCommunityList();
@@ -174,7 +215,8 @@ public class VoterDetailsController implements Initializable {
     private void updateAction(ActionEvent event) {
 
         DataHandler.updateVoterDetails(emailId.getText(), mobileNumber.getText(), altMobileNumber.getText(),
-                dateOfBirth.getValue().toString(), age.getText(),
+                dateOfBirth.getValue().toString(),
+                this.color.getSelectionModel().getSelectedItem().getObj1(),
                 this.community.getSelectionModel().getSelectedItem().getObj1(),
                 this.gender.getSelectionModel().getSelectedItem().getObj1(),
                 voterDetails.getObj1(),
