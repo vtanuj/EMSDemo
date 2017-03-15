@@ -5,6 +5,7 @@
  */
 package ems.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -21,6 +22,15 @@ public class DateUtils {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+    public static String dateTimePlain() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        String s = dateFormat.format(cal.getTime());
+        s = s.replace("/", "");
+        s = s.replace(":", "");
+        return s;
+    }
 
     public static final LocalDate getLocalDate(String dateString) {
         LocalDate localDate = LocalDate.parse(dateString, formatter);

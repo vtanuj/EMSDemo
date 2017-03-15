@@ -46,7 +46,9 @@ import static ems.util.Constants.IMAGE_LOGO;
 import static ems.util.Constants.MONTHS;
 import static ems.util.Constants.REPORTS_TYPE;
 import static ems.util.Constants.TITLE_ABOUT;
+import ems.util.DateUtils;
 import ems.util.JavaFXUtils;
+import ems.util.MyUtils;
 import java.io.File;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -90,6 +92,11 @@ public class HomeController implements Initializable {
     @FXML
     private Label headerHome;
 
+    //Database Export
+    @FXML
+    private AnchorPane exportDB;
+    @FXML
+    private Button exportDatabase;
     //Election History
     @FXML
     private AnchorPane electionHistory;
@@ -263,6 +270,7 @@ public class HomeController implements Initializable {
         reports.setVisible(false);
         voterSearchUpdate.setVisible(false);
         electionHistory.setVisible(false);
+        exportDB.setVisible(false);
         //Load Tree Items
         loadTreeItems();
         //Load Dashboard Values
@@ -277,7 +285,7 @@ public class HomeController implements Initializable {
         wardNo.setItems(wardNoData);
         electionHistoryGo.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CHECK, 16, Color.GREEN));
         electionHistoryClear.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CLOSE, 16, Color.RED));
-
+        exportDatabase.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.DATABASE, 16, Color.RED));
         electionHistoryColumn1.setCellValueFactory(new PropertyValueFactory<>("obj1"));
         electionHistoryColumn2.setCellValueFactory(new PropertyValueFactory<>("obj2"));
         electionHistoryColumn3.setCellValueFactory(new PropertyValueFactory<>("obj3"));
@@ -576,8 +584,8 @@ public class HomeController implements Initializable {
 
             TreeItem<String> nodeItemF = new TreeItem<>("Admin");
             TreeItem<String> nodeItemF1 = new TreeItem<>("Change Password");
-            TreeItem<String> nodeItemF2 = new TreeItem<>("DB Backup");
-            TreeItem<String> nodeItemF3 = new TreeItem<>("DB Import");
+            TreeItem<String> nodeItemF2 = new TreeItem<>("Database Export");
+            TreeItem<String> nodeItemF3 = new TreeItem<>("Database Import");
             TreeItem<String> nodeItemF4 = new TreeItem<>("Sync");
             nodeItemF.getChildren().addAll(nodeItemF1, nodeItemF2, nodeItemF3, nodeItemF4);
 
@@ -665,24 +673,35 @@ public class HomeController implements Initializable {
                     reports.setVisible(false);
                     voterSearchUpdate.setVisible(false);
                     electionHistory.setVisible(false);
+                    exportDB.setVisible(false);
                     break;
                 case "Election History":
                     dashboard.setVisible(false);
                     reports.setVisible(false);
                     voterSearchUpdate.setVisible(false);
                     electionHistory.setVisible(true);
+                    exportDB.setVisible(false);
                     break;
                 case "Search & Update":
                     dashboard.setVisible(false);
                     reports.setVisible(false);
                     voterSearchUpdate.setVisible(true);
                     electionHistory.setVisible(false);
+                    exportDB.setVisible(false);
                     break;
                 case "Reports":
                     dashboard.setVisible(false);
                     reports.setVisible(true);
                     voterSearchUpdate.setVisible(false);
                     electionHistory.setVisible(false);
+                    exportDB.setVisible(false);
+                    break;
+                case "Database Export":
+                    dashboard.setVisible(false);
+                    reports.setVisible(false);
+                    voterSearchUpdate.setVisible(false);
+                    electionHistory.setVisible(false);
+                    exportDB.setVisible(true);
                     break;
                 case "Sync":
                     break;
@@ -1440,5 +1459,19 @@ public class HomeController implements Initializable {
         electionHistoryColumn2.setVisible(true);
         electionHistoryColumn3.setVisible(true);
         electionHistoryColumn4.setVisible(true);
+    }
+
+    @FXML
+    private void onExportDB(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Window window = source.getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save");
+        fileChooser.setInitialFileName("DatabaseBackup_" + DateUtils.dateTimePlain() + ".db");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Database files (*.db)", "*.db");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(window);
+        MyUtils.exportDB(file);
+
     }
 }

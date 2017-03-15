@@ -38,7 +38,7 @@
                 <TreeView fx:id="treeView" layoutY="125.0" onMouseClicked="#onTreeViewClick" prefHeight="500.0" prefWidth="200.0" />
                 <AnchorPane layoutX="200.0" layoutY="125.0" prefHeight="500.0" prefWidth="800.0">
                     <children>
-                        <AnchorPane fx:id="dashboard" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="500.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <Label layoutX="303.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" text="Dashboard" textFill="#575757">
                                     <font>
@@ -141,6 +141,11 @@
                                 </TableView>
                             </children>
                         </AnchorPane>
+                  <AnchorPane fx:id="exportDB" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="exportDatabase" layoutX="374.0" layoutY="225.0" mnemonicParsing="false" onAction="#onExportDB" text="Export Database" />
+                     </children>
+                  </AnchorPane>
                     </children>
                 </AnchorPane>
             </children>

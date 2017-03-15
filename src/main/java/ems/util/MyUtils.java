@@ -13,6 +13,7 @@ import static ems.util.Constants.PATH_TEMP_DB;
 import static ems.util.Constants.PATH_TEMP_DB_;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +26,12 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.text.Font;
 
 /**
@@ -190,5 +195,56 @@ public class MyUtils {
         //Open in Explorer and Highlight
         Process p = new ProcessBuilder(list).start();
     }
-    
+
+    public static void exportDB(File file) {
+        try {
+            boolean status = copyFileUsingStream(new File(PATH_TEMP_DB_), file);
+            if (status) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Database exported successful!");
+                alert.setContentText("Successfully exported the database.");
+                ButtonType buttonTypeOne = new ButtonType("Open Folder");
+                ButtonType buttonTypeTwo = new ButtonType("Open File");
+                ButtonType buttonTypeOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeOk);
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == buttonTypeOne) {
+                    MyUtils.openFolderWithFileSelected(file.getAbsolutePath());
+                } else if (result.get() == buttonTypeTwo) {
+                    MyUtils.openFile(file.getAbsolutePath());
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Failure");
+                alert.setHeaderText("Database exported unsuccessful!");
+                alert.setContentText("Unable to export the database.");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            JavaFXUtils.exceptionDialog(e);
+        }
+    }
+
+    private static boolean copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+            return true;
+        } catch (Exception e) {
+            JavaFXUtils.exceptionDialog(e);
+        } finally {
+            is.close();
+            os.close();
+        }
+        return false;
+    }
 }
