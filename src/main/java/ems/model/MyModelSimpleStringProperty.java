@@ -5,6 +5,8 @@
  */
 package ems.model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -29,6 +31,7 @@ public class MyModelSimpleStringProperty {
     private SimpleStringProperty obj14;
     private SimpleStringProperty obj15;
     private SimpleStringProperty obj16;
+        private BooleanProperty selected = new SimpleBooleanProperty(false);
 
     public MyModelSimpleStringProperty(String obj1, String obj2, String obj3, String obj4, String obj5, String obj6,
             String obj7, String obj8, String obj9, String obj10, String obj11, String obj12, String obj13,
@@ -179,4 +182,15 @@ public class MyModelSimpleStringProperty {
         this.obj1.set(obj16);
     }
 
+   public BooleanProperty selectedProperty() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected.set(selected);
+        }
+
+        public boolean isSelected() {
+            return selected.get();
+        }
 }

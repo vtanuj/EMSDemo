@@ -10,6 +10,7 @@ import ems.model.MyModel;
 import ems.model.MyModelSimpleStringProperty;
 import static ems.controller.HomeController.electionHistoryTableData;
 import static ems.controller.HomeController.reportTableData;
+import static ems.controller.HomeController.statusUpdateTableData;
 import static ems.controller.HomeController.voterTableData;
 import static ems.util.Constants.PATH_TEMP_DB_;
 import static ems.util.Constants.Q_S_AGE_WISE;
@@ -24,6 +25,8 @@ import static ems.util.Constants.Q_S_COLOR_CODE_BOOTH_WISE;
 import static ems.util.Constants.Q_S_COLOR_CODE_BOOTH_WISE_;
 import static ems.util.Constants.Q_S_COLOR_CODE_WISE;
 import static ems.util.Constants.Q_S_COLOR_CODE_WISE_;
+import static ems.util.Constants.Q_S_COMMUNITY_STATUS;
+import static ems.util.Constants.Q_S_COMMUNITY_STATUS_;
 import static ems.util.Constants.Q_S_COMMUNITY_WISE;
 import static ems.util.Constants.Q_S_COMMUNITY_WISE_;
 import static ems.util.Constants.Q_S_DASHBOARD_CAST_WISE;
@@ -37,6 +40,8 @@ import static ems.util.Constants.Q_S_NAME_WISE;
 import static ems.util.Constants.Q_S_SECTION_WISE;
 import static ems.util.Constants.Q_S_SETION_WISE_;
 import static ems.util.Constants.Q_S_SR_WISE;
+import static ems.util.Constants.Q_S_SURNAME_STATUS;
+import static ems.util.Constants.Q_S_SURNAME_STATUS_;
 import static ems.util.Constants.Q_S_SURNAME_WISE;
 import static ems.util.Constants.Q_S_SURNAME_WISE_;
 import static ems.util.Constants.Q_U_VOTER_DETAILS;
@@ -241,7 +246,7 @@ public class DataHandler {
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
                         rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12),
                         rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16),
-                         rs.getString(17));
+                        rs.getString(17));
             }
         } catch (SQLException e) {
             log.error("getVoterDetails: " + e.getMessage());
@@ -267,6 +272,12 @@ public class DataHandler {
         List<MyModelSimpleStringProperty> reportDetails = new LinkedList<>();
         String sqlQuery = "";
         switch (reportType) {
+            case "101":
+                sqlQuery = String.format(Q_S_SURNAME_STATUS_, params[0]);
+                break;
+            case "102":
+                sqlQuery = String.format(Q_S_COMMUNITY_STATUS_, params[0]);
+                break;
             case "3":
                 sqlQuery = String.format(Q_S_AREA_WISE_, params[0], params[1]);
                 break;
@@ -449,12 +460,24 @@ public class DataHandler {
                 case "ELECTION_HISTORY":
                     sqlQuery = String.format(Q_S_ELECTION_HISTORY, paramss[1]);
                     break;
+                case "STATUS_UPDATE":
+                    switch (paramss[1]) {
+                        case "101":
+                            sqlQuery = Q_S_SURNAME_STATUS;
+                            break;
+                        case "102":
+                            sqlQuery = Q_S_COMMUNITY_STATUS;
+                            break;
+                    }
+                    break;
             }
             con = getConnection();
             log.info("sqlQuery: " + sqlQuery);
             s = con.createStatement();
             rs = s.executeQuery(sqlQuery);
-            if (reportType.equals("ELECTION_HISTORY")) {
+            if (reportType.equals("STATUS_UPDATE")) {
+                statusUpdateTableData.clear();
+            } else if (reportType.equals("ELECTION_HISTORY")) {
                 electionHistoryTableData.clear();
             } else if (StringUtils.isNumeric(reportType)) {
                 reportTableData.clear();
@@ -468,7 +491,7 @@ public class DataHandler {
                             "", "", "");
                     electionHistoryTableData.add(entry);
                 } else {
-                    if (StringUtils.isNumeric(reportType)) {
+                    if (StringUtils.isNumeric(reportType) || reportType.equals("STATUS_UPDATE")) {
                         switch (reportType) {
                             case "3":
                             case "6":
@@ -481,6 +504,12 @@ public class DataHandler {
                                         rs.getString(1), rs.getString(2), "", "", "", "", "", "", "", "",
                                         "", "", "", "", "", "");
                                 reportTableData.add(entry);
+                                break;
+                            case "STATUS_UPDATE":
+                                entry = new MyModelSimpleStringProperty(
+                                        rs.getString(1), rs.getString(2), "", "", "", "", "", "", "", "",
+                                        "", "", "", "", "", "");
+                                statusUpdateTableData.add(entry);
                                 break;
                             default:
                                 entry = new MyModelSimpleStringProperty(rs.getString(1), rs.getString(2),

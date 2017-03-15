@@ -287,6 +287,8 @@ public class Constants {
             + "where booth_no=%s and Cast_nm is not null and Cast_nm<>'' "
             + "group by Cast_nm "
             + "order by Cast_nm";
+    
+     
 
     public static final String Q_S_COMMUNITY_WISE_
             = "select "
@@ -304,6 +306,33 @@ public class Constants {
             + "from e_details a "
             + "left join booth_master b on a.booth_no=b.booth_no "
             + "where a.booth_no=%s and Cast_nm='%s' "
+            + "order by a.FirstNameEnglish";
+    
+    public static final String Q_S_COMMUNITY_STATUS
+            = "select "
+            + "Cast_nm, "
+            + "count(*) "
+            + "from e_details "
+            + "where  Cast_nm is not null and Cast_nm<>'' "
+            + "group by Cast_nm "
+            + "order by Cast_nm";
+    
+    public static final String Q_S_COMMUNITY_STATUS_
+            = "select "
+            + "ifnull(a.ward_no,''),"
+            + "ifnull(a.WardSr_No,''),"
+            + "IFNULL(a.slno,''),"
+            + "trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', "
+            + "ifnull(a.SEX,''),"
+            + "ifnull(a.AGE,''),"
+            + "ifnull(a.CardNo,''),"
+            + "ifnull(a.Mobile_no,''),"
+            + "ifnull(strftime('%%d-%%m-%%Y', a.DOB),''),"
+            + "ifnull(a.Cast_nm,''),"
+            + "ifnull(b.booth_name_en,'') "
+            + "from e_details a "
+            + "left join booth_master b on a.booth_no=b.booth_no "
+            + "where Cast_nm='%s' "
             + "order by a.FirstNameEnglish";
 
     public static final String Q_S_COLOR_CODE_WISE
@@ -443,6 +472,33 @@ public class Constants {
             + "from e_details a "
             + "left join booth_master b on a.booth_no=b.booth_no "
             + "where a.booth_no=%s and SurNameEnglish='%s' "
+            + "order by a.FirstNameEnglish";
+    
+     public static final String Q_S_SURNAME_STATUS
+            = "select "
+            + "SurNameEnglish, "
+            + "count(*) "
+            + "from e_details "
+            + "where SurNameEnglish is not null and trim(SurNameEnglish)<>'' "
+            + "group by SurNameEnglish "
+            + "order by SurNameEnglish";
+
+    public static final String Q_S_SURNAME_STATUS_
+            = "select "
+            + "ifnull(a.ward_no,''),"
+            + "ifnull(a.WardSr_No,''),"
+            + "IFNULL(a.slno,''),"
+            + "trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', "
+            + "ifnull(a.SEX,''),"
+            + "ifnull(a.AGE,''),"
+            + "ifnull(a.CardNo,''),"
+            + "ifnull(a.Mobile_no,''),"
+            + "ifnull(strftime('%%d-%%m-%%Y', a.DOB),''),"
+            + "ifnull(a.Cast_nm,''),"
+            + "ifnull(b.booth_name_en,'') "
+            + "from e_details a "
+            + "left join booth_master b on a.booth_no=b.booth_no "
+            + "where SurNameEnglish='%s' "
             + "order by a.FirstNameEnglish";
 
     public static final String Q_S_WITHOUT_ID_CARD_WISE

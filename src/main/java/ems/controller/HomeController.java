@@ -17,14 +17,10 @@ import ems.task.Reports;
 import static ems.util.Constants.COLORS;
 import ems.util.DataHandler;
 import java.util.ResourceBundle;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,7 +37,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import static ems.util.Constants.IMAGE_LOGO;
 import static ems.util.Constants.MONTHS;
 import static ems.util.Constants.REPORTS_TYPE;
@@ -50,6 +45,7 @@ import ems.util.DateUtils;
 import ems.util.JavaFXUtils;
 import ems.util.MyUtils;
 import java.io.File;
+import java.util.LinkedList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -92,11 +88,38 @@ public class HomeController implements Initializable {
     @FXML
     private Label headerHome;
 
+    //Status Update
+    @FXML
+    private AnchorPane statusUpdate;
+    @FXML
+    private ComboBox<MyModel> statusUpdateReportCombo;
+    private final ObservableList<MyModel> statusUpdateReportComboData = FXCollections.observableArrayList();
+    @FXML
+    private TableView<MyModelSimpleStringProperty> statusUpdateTable;
+    @FXML
+    private TableColumn statusUpdateColumn1;
+    @FXML
+    private TableColumn statusUpdateColumn2;
+
+    public static ObservableList<MyModelSimpleStringProperty> statusUpdateTableData
+            = FXCollections.observableArrayList();
+
     //Database Export
     @FXML
     private AnchorPane exportDB;
     @FXML
     private Button exportDatabase;
+    @FXML
+    private Button statusUpdateGo;
+    @FXML
+    private Button statusUpdateClear;
+
+    //Database Import
+    @FXML
+    private AnchorPane importDB;
+    @FXML
+    private Button importDatabase;
+
     //Election History
     @FXML
     private AnchorPane electionHistory;
@@ -271,6 +294,8 @@ public class HomeController implements Initializable {
         voterSearchUpdate.setVisible(false);
         electionHistory.setVisible(false);
         exportDB.setVisible(false);
+        importDB.setVisible(false);
+        statusUpdate.setVisible(false);
         //Load Tree Items
         loadTreeItems();
         //Load Dashboard Values
@@ -286,6 +311,8 @@ public class HomeController implements Initializable {
         electionHistoryGo.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CHECK, 16, Color.GREEN));
         electionHistoryClear.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CLOSE, 16, Color.RED));
         exportDatabase.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.DATABASE, 16, Color.RED));
+        importDatabase.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.DATABASE, 16, Color.RED));
+
         electionHistoryColumn1.setCellValueFactory(new PropertyValueFactory<>("obj1"));
         electionHistoryColumn2.setCellValueFactory(new PropertyValueFactory<>("obj2"));
         electionHistoryColumn3.setCellValueFactory(new PropertyValueFactory<>("obj3"));
@@ -294,6 +321,13 @@ public class HomeController implements Initializable {
         electionHistoryTable.setItems(electionHistoryTableData);
 
         TableFilter filter3 = new TableFilter(electionHistoryTable);
+
+        statusUpdateColumn1.setCellValueFactory(new PropertyValueFactory<>("obj1"));
+        statusUpdateColumn2.setCellValueFactory(new PropertyValueFactory<>("obj2"));
+
+        statusUpdateTable.setItems(statusUpdateTableData);
+
+        TableFilter filter4 = new TableFilter(statusUpdateTable);
 
         radioName.setUserData("a");
         radioID.setUserData("b");
@@ -343,6 +377,20 @@ public class HomeController implements Initializable {
         });
         voterGo.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CHECK, 16, Color.GREEN));
         voterClear.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CLOSE, 16, Color.RED));
+
+        statusUpdateReportCombo.setConverter(new MyModelConverter());
+
+        List<MyModel> COLORS = new LinkedList<>();
+        COLORS.add(new MyModel("0", "Please Choose"));
+        COLORS.add(new MyModel("101", "Surname Wise"));
+        COLORS.add(new MyModel("102", "Community Wise"));
+        for (MyModel report : COLORS) {
+            statusUpdateReportComboData.add(report);
+        }
+        statusUpdateReportCombo.setItems(statusUpdateReportComboData);
+
+        statusUpdateGo.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CHECK, 16, Color.GREEN));
+        statusUpdateClear.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CLOSE, 16, Color.RED));
 
         reportGo.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CHECK, 16, Color.GREEN));
         reportClear.setGraphic(JavaFXUtils.getGraphic("FontAwesome", FontAwesome.Glyph.CLOSE, 16, Color.RED));
@@ -599,6 +647,13 @@ public class HomeController implements Initializable {
     }
 
     public void loadDashboard() {
+        barChartData.clear();
+        pieChartData.clear();
+        pieChartData1.clear();
+
+        barChart.getData().clear();
+        barChart.layout();
+
         List<MyModel> castWistList = DataHandler.getDashboardData("1");
         List<MyModel> genderWistList = DataHandler.getDashboardData("2");
         List<MyModel> colorWistList = DataHandler.getDashboardData("3");
@@ -674,6 +729,8 @@ public class HomeController implements Initializable {
                     voterSearchUpdate.setVisible(false);
                     electionHistory.setVisible(false);
                     exportDB.setVisible(false);
+                    importDB.setVisible(false);
+                    statusUpdate.setVisible(false);
                     break;
                 case "Election History":
                     dashboard.setVisible(false);
@@ -681,6 +738,8 @@ public class HomeController implements Initializable {
                     voterSearchUpdate.setVisible(false);
                     electionHistory.setVisible(true);
                     exportDB.setVisible(false);
+                    importDB.setVisible(false);
+                    statusUpdate.setVisible(false);
                     break;
                 case "Search & Update":
                     dashboard.setVisible(false);
@@ -688,6 +747,17 @@ public class HomeController implements Initializable {
                     voterSearchUpdate.setVisible(true);
                     electionHistory.setVisible(false);
                     exportDB.setVisible(false);
+                    importDB.setVisible(false);
+                    statusUpdate.setVisible(false);
+                    break;
+                case "Status Update":
+                    dashboard.setVisible(false);
+                    reports.setVisible(false);
+                    voterSearchUpdate.setVisible(false);
+                    electionHistory.setVisible(false);
+                    exportDB.setVisible(false);
+                    importDB.setVisible(false);
+                    statusUpdate.setVisible(true);
                     break;
                 case "Reports":
                     dashboard.setVisible(false);
@@ -695,6 +765,8 @@ public class HomeController implements Initializable {
                     voterSearchUpdate.setVisible(false);
                     electionHistory.setVisible(false);
                     exportDB.setVisible(false);
+                    importDB.setVisible(false);
+                    statusUpdate.setVisible(false);
                     break;
                 case "Database Export":
                     dashboard.setVisible(false);
@@ -702,6 +774,17 @@ public class HomeController implements Initializable {
                     voterSearchUpdate.setVisible(false);
                     electionHistory.setVisible(false);
                     exportDB.setVisible(true);
+                    importDB.setVisible(false);
+                    statusUpdate.setVisible(false);
+                    break;
+                case "Database Import":
+                    dashboard.setVisible(false);
+                    reports.setVisible(false);
+                    voterSearchUpdate.setVisible(false);
+                    electionHistory.setVisible(false);
+                    exportDB.setVisible(false);
+                    importDB.setVisible(true);
+                    statusUpdate.setVisible(false);
                     break;
                 case "Sync":
                     break;
@@ -1474,4 +1557,107 @@ public class HomeController implements Initializable {
         MyUtils.exportDB(file);
 
     }
+
+    @FXML
+    private void onImportDB(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Window window = source.getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Database files (*.db)", "*.db");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(window);
+        MyUtils.importDB(file);
+        //load Anchor Panes
+        dashboard.setVisible(true);
+        reports.setVisible(false);
+        voterSearchUpdate.setVisible(false);
+        electionHistory.setVisible(false);
+        exportDB.setVisible(false);
+        importDB.setVisible(false);
+        //Load Dashboard Values
+        loadDashboard();
+    }
+
+    @FXML
+    private void onStatusUpdateGoClick(ActionEvent event) {
+        String reportType = null;
+        Node source = (Node) event.getSource();
+        Window window = source.getScene().getWindow();
+        try {
+            try {
+                reportType = this.statusUpdateReportCombo.getSelectionModel().getSelectedItem().getObj1();
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+            if (reportType == null || reportType.equals("0")) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Report Type not selected!");
+                alert.setContentText("Please choose a Report Type");
+                alert.showAndWait();
+            } else {
+                if (reportType.equals("1")) {
+                    statusUpdateColumn1.setText("Surname");
+                } else {
+                    statusUpdateColumn1.setText("Community");
+                }
+                statusUpdateColumn2.setText("No. of Voters");
+
+                statusUpdateColumn1.setVisible(true);
+                statusUpdateColumn2.setVisible(true);
+
+                dialog = JavaFXUtils.dialog(dialog, window);
+                Reports task = new Reports(dialog, window, "STATUS_UPDATE", reportType);
+                new Thread(task).start();
+                JavaFXUtils.dim(window);
+                dialog.show();
+            }
+        } catch (Exception e) {
+            JavaFXUtils.exceptionDialog(e);
+        }
+    }
+
+    @FXML
+    private void onStatusUpdateClearClick(ActionEvent event) {
+        statusUpdateReportCombo.getSelectionModel().selectFirst();
+        statusUpdateTableData.clear();
+        statusUpdateColumn1.setText("");
+        statusUpdateColumn2.setText("");
+        statusUpdateColumn1.setVisible(true);
+        statusUpdateColumn2.setVisible(true);
+    }
+
+    @FXML
+    private void onStatusUpdateTableClicked(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            Node node = ((Node) event.getTarget()).getParent();
+            TableRow row;
+            if (node instanceof TableRow) {
+                row = (TableRow) node;
+            } else {
+                // clicking on text part
+                row = (TableRow) node.getParent();
+            }
+            try {
+                String reportType = this.statusUpdateReportCombo.getSelectionModel().getSelectedItem().getObj1();
+                MyModelSimpleStringProperty m = (MyModelSimpleStringProperty) row.getItem();
+                List<MyModelSimpleStringProperty> statusUpdateDetails = 
+                        DataHandler.getReportDetails(reportType, m.getObj1());
+                Stage statusUpdateStage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ems/fxml/StatusUpdate.fxml"));
+                Parent root = loader.load();
+                StatusUpdateController statusUpdateController = loader.<StatusUpdateController>getController();
+                statusUpdateController.initStatusUpdateDetails(statusUpdateDetails);
+                Scene scene = new Scene(root);
+                statusUpdateStage.setTitle(TITLE_ABOUT);
+                statusUpdateStage.setScene(scene);
+                statusUpdateStage.getIcons().add(new Image(IMAGE_FAVICON));
+                statusUpdateStage.show();
+            } catch (Exception ex) {
+                log.error(ex.getMessage());
+            }
+        }
+    }
+
 }

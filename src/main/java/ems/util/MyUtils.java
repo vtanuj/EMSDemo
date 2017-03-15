@@ -205,15 +205,12 @@ public class MyUtils {
                 alert.setHeaderText("Database exported successful!");
                 alert.setContentText("Successfully exported the database.");
                 ButtonType buttonTypeOne = new ButtonType("Open Folder");
-                ButtonType buttonTypeTwo = new ButtonType("Open File");
                 ButtonType buttonTypeOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-                alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeOk);
+                alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeOk);
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == buttonTypeOne) {
                     MyUtils.openFolderWithFileSelected(file.getAbsolutePath());
-                } else if (result.get() == buttonTypeTwo) {
-                    MyUtils.openFile(file.getAbsolutePath());
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -246,5 +243,41 @@ public class MyUtils {
             os.close();
         }
         return false;
+    }
+
+    public static boolean renameFile(File oldfile, File newfile) {
+        return oldfile.renameTo(newfile);
+    }
+
+    public static void importDB(File file) {
+        try {
+            boolean renameStatus = renameFile(new File(PATH_TEMP_DB_), new File(PATH_TEMP_DB_ + "_" + DateUtils.dateTimePlain()));
+            if (renameStatus) {
+                boolean status = copyFileUsingStream(file, new File(PATH_TEMP_DB_));
+                if (status) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText("Database import successful!");
+                    alert.setContentText("Successfully exported the database.");
+                    ButtonType buttonTypeOk = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                    alert.getButtonTypes().setAll(buttonTypeOk);
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Failure");
+                    alert.setHeaderText("Database imported unsuccessfully!");
+                    alert.setContentText("Unable to import the database.");
+                    alert.showAndWait();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Failure");
+                alert.setHeaderText("Database imported unsuccessfully!");
+                alert.setContentText("Unable to import the database.");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            JavaFXUtils.exceptionDialog(e);
+        }
     }
 }
