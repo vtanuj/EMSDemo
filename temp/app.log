@@ -57,3 +57,161 @@
 2017-03-14 23:08:47 INFO  Ems:146 - Application started.
 2017-03-14 23:51:37 INFO  Ems:146 - Application started.
 2017-03-15 00:01:23 INFO  Ems:146 - Application started.
+2017-03-15 19:45:34 INFO  Ems:146 - Application started.
+2017-03-15 19:46:06 INFO  Ems:150 - selectPath: /select,D:\DatabaseBackup_20170315 194557.db
+2017-03-15 19:46:06 INFO  Ems:184 - string:explorer.exe
+2017-03-15 19:46:06 INFO  Ems:184 - string:/select,D:\DatabaseBackup_20170315
+2017-03-15 19:46:06 INFO  Ems:184 - string:194557.db
+2017-03-15 20:10:46 INFO  Ems:146 - Application started.
+2017-03-15 20:11:04 INFO  Ems:399 - reportType|a ----> params|[a, tanuj, ]
+2017-03-15 20:11:04 INFO  Ems:454 - sqlQuery: select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where a.FirstNameEnglish like 'tanuj%' and a.SurNameEnglish like '%' order by a.FirstNameEnglish
+2017-03-15 20:11:35 INFO  Ems:150 - selectPath: /select,D:\DatabaseBackup_20170315 201126.db
+2017-03-15 20:11:35 INFO  Ems:184 - string:explorer.exe
+2017-03-15 20:11:35 INFO  Ems:184 - string:/select,D:\DatabaseBackup_20170315
+2017-03-15 20:11:35 INFO  Ems:184 - string:201126.db
+2017-03-15 20:21:11 INFO  Ems:146 - Application started.
+2017-03-15 20:27:51 INFO  Ems:146 - Application started.
+2017-03-15 20:31:35 INFO  Ems:146 - Application started.
+2017-03-15 20:33:28 INFO  Ems:146 - Application started.
+2017-03-15 20:37:12 INFO  Ems:146 - Application started.
+2017-03-15 21:16:48 INFO  Ems:146 - Application started.
+2017-03-15 21:41:28 INFO  Ems:146 - Application started.
+2017-03-15 21:45:16 INFO  Ems:146 - Application started.
+2017-03-15 21:48:28 INFO  Ems:146 - Application started.
+2017-03-15 21:52:19 INFO  Ems:146 - Application started.
+2017-03-15 22:09:27 INFO  Ems:146 - Application started.
+2017-03-15 22:09:48 INFO  Ems:402 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 22:09:48 INFO  Ems:467 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 22:09:48 ERROR Ems:524 - getReportException: column 3 out of bounds [1,2]
+2017-03-15 22:11:58 INFO  Ems:146 - Application started.
+2017-03-15 22:12:24 INFO  Ems:402 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 22:12:24 INFO  Ems:467 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 22:12:24 ERROR Ems:524 - getReportException: column 3 out of bounds [1,2]
+2017-03-15 22:15:09 INFO  Ems:146 - Application started.
+2017-03-15 22:15:20 INFO  Ems:402 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 22:15:20 INFO  Ems:467 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 22:29:07 INFO  Ems:146 - Application started.
+2017-03-15 22:29:19 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 22:29:19 INFO  Ems:473 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 22:29:28 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 22:29:28 INFO  Ems:473 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 22:31:29 INFO  Ems:146 - Application started.
+2017-03-15 22:31:41 ERROR Ems:1591 - 
+2017-03-15 22:32:00 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 22:32:00 INFO  Ems:473 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 22:32:03 ERROR Ems:1662 - Location is not set.
+2017-03-15 22:32:21 ERROR Ems:1662 - Location is not set.
+2017-03-15 22:32:37 ERROR Ems:1662 - Location is not set.
+2017-03-15 22:32:44 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 22:32:44 INFO  Ems:473 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 22:32:48 ERROR Ems:1662 - 1
+2017-03-15 22:37:09 INFO  Ems:146 - Application started.
+2017-03-15 22:37:45 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 22:37:45 INFO  Ems:473 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 22:37:49 ERROR Ems:1662 - 1
+2017-03-15 22:38:02 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 22:38:02 INFO  Ems:473 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 22:38:13 ERROR Ems:1662 - 1
+2017-03-15 22:38:17 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 22:38:17 INFO  Ems:473 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 22:40:05 INFO  Ems:146 - Application started.
+2017-03-15 22:40:18 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 22:40:18 INFO  Ems:473 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 22:40:22 ERROR Ems:1658 - 1
+2017-03-15 22:40:30 ERROR Ems:1658 - 1
+2017-03-15 22:40:32 INFO  Ems:408 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 22:40:32 INFO  Ems:473 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 22:40:35 ERROR Ems:1658 - 1
+2017-03-15 22:40:38 ERROR Ems:1658 - 1
+2017-03-15 22:44:37 INFO  Ems:146 - Application started.
+2017-03-15 22:44:58 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 22:44:58 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 22:45:03 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aajgavkar                     ' order by a.FirstNameEnglish
+2017-03-15 22:45:07 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 22:45:07 INFO  Ems:475 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 22:45:11 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Muslim' order by a.FirstNameEnglish
+2017-03-15 23:17:26 INFO  Ems:146 - Application started.
+2017-03-15 23:17:39 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 23:17:39 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 23:17:44 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='A Anthony                     ' order by a.FirstNameEnglish
+2017-03-15 23:18:02 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='AALAM' order by a.FirstNameEnglish
+2017-03-15 23:18:12 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 23:18:12 INFO  Ems:475 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 23:18:15 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='North Indian' order by a.FirstNameEnglish
+2017-03-15 23:18:31 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Parsi' order by a.FirstNameEnglish
+2017-03-15 23:18:43 ERROR Ems:1658 - 
+2017-03-15 23:18:45 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Parsi' order by a.FirstNameEnglish
+2017-03-15 23:20:21 INFO  Ems:146 - Application started.
+2017-03-15 23:20:32 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 23:20:32 INFO  Ems:475 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 23:20:36 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='jain' order by a.FirstNameEnglish
+2017-03-15 23:20:53 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Bengali' order by a.FirstNameEnglish
+2017-03-15 23:21:00 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Gujarati' order by a.FirstNameEnglish
+2017-03-15 23:21:09 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Muslim' order by a.FirstNameEnglish
+2017-03-15 23:21:19 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Christian' order by a.FirstNameEnglish
+2017-03-15 23:21:27 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='North Indian' order by a.FirstNameEnglish
+2017-03-15 23:35:28 INFO  Ems:146 - Application started.
+2017-03-15 23:35:41 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 23:35:41 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 23:35:46 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aajgavkar                     ' order by a.FirstNameEnglish
+2017-03-15 23:42:27 INFO  Ems:146 - Application started.
+2017-03-15 23:42:37 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-15 23:42:37 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-15 23:42:42 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='A Anthony ' order by a.FirstNameEnglish
+2017-03-15 23:47:06 INFO  Ems:146 - Application started.
+2017-03-15 23:47:20 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 23:47:20 INFO  Ems:475 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 23:47:23 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='jain' order by a.FirstNameEnglish
+2017-03-15 23:49:09 INFO  Ems:146 - Application started.
+2017-03-15 23:49:38 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-15 23:49:38 INFO  Ems:475 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-15 23:49:42 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Parsi' order by a.FirstNameEnglish
+2017-03-16 00:00:50 INFO  Ems:146 - Application started.
+2017-03-16 00:01:02 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 00:01:02 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 00:01:08 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aalmeda                       ' order by a.FirstNameEnglish
+2017-03-16 00:17:33 INFO  Ems:146 - Application started.
+2017-03-16 00:18:29 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 00:18:29 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 00:18:33 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aajgavkar                     ' order by a.FirstNameEnglish
+2017-03-16 00:26:32 INFO  Ems:146 - Application started.
+2017-03-16 00:26:44 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-16 00:26:44 INFO  Ems:475 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-16 00:26:48 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='Punjabi' order by a.FirstNameEnglish
+2017-03-16 00:29:44 INFO  Ems:146 - Application started.
+2017-03-16 00:30:07 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 102]
+2017-03-16 00:30:07 INFO  Ems:475 - sqlQuery: select Cast_nm, count(*) from e_details where  Cast_nm is not null and Cast_nm<>'' group by Cast_nm order by Cast_nm
+2017-03-16 00:30:11 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where Cast_nm='jain' order by a.FirstNameEnglish
+2017-03-16 00:34:49 INFO  Ems:146 - Application started.
+2017-03-16 00:35:01 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 00:35:01 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 00:35:06 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aajgavkar                     ' order by a.FirstNameEnglish
+2017-03-16 00:39:22 INFO  Ems:146 - Application started.
+2017-03-16 00:39:34 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 00:39:34 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 00:39:38 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='A Anthony ' order by a.FirstNameEnglish
+2017-03-16 00:39:46 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aajgavkar                     ' order by a.FirstNameEnglish
+2017-03-16 00:42:13 INFO  Ems:146 - Application started.
+2017-03-16 00:42:23 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 00:42:23 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 00:42:30 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='A Anthony ' order by a.FirstNameEnglish
+2017-03-16 00:52:22 INFO  Ems:146 - Application started.
+2017-03-16 00:52:34 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 00:52:34 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 00:52:38 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='A Anthony ' order by a.FirstNameEnglish
+2017-03-16 01:01:12 INFO  Ems:146 - Application started.
+2017-03-16 01:01:31 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 01:01:31 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 01:01:35 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aadakane                      ' order by a.FirstNameEnglish
+2017-03-16 01:10:47 INFO  Ems:146 - Application started.
+2017-03-16 01:10:59 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 01:10:59 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 01:11:04 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aajgavkar                     ' order by a.FirstNameEnglish
+2017-03-16 01:12:49 INFO  Ems:146 - Application started.
+2017-03-16 01:13:00 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 01:13:00 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 01:13:04 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aajgavkar                     ' order by a.FirstNameEnglish
+2017-03-16 01:19:07 INFO  Ems:146 - Application started.
+2017-03-16 01:19:41 INFO  Ems:410 - reportType|STATUS_UPDATE ----> params|[STATUS_UPDATE, 101]
+2017-03-16 01:19:41 INFO  Ems:475 - sqlQuery: select SurNameEnglish, count(*) from e_details where SurNameEnglish is not null and trim(SurNameEnglish)<>'' group by SurNameEnglish order by SurNameEnglish
+2017-03-16 01:19:46 INFO  Ems:344 - sqlQuery:select ifnull(a.ward_no,''),ifnull(a.WardSr_No,''),IFNULL(a.slno,''),trim(ifnull(a.SurNameEnglish,'')) || '  ' || trim(ifnull(a.FirstNameEnglish,'')) 'Name', ifnull(a.SEX,''),ifnull(a.AGE,''),ifnull(a.CardNo,''),ifnull(a.Mobile_no,''),ifnull(strftime('%d-%m-%Y', a.DOB),''),ifnull(a.Cast_nm,''),ifnull(b.booth_name_en,'') from e_details a left join booth_master b on a.booth_no=b.booth_no where SurNameEnglish='Aajgavkar                     ' order by a.FirstNameEnglish
