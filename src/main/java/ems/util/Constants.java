@@ -38,7 +38,7 @@ public class Constants {
     public static final String PATH_TEMP_DB = "/ems/temp/temp.dll";
     public static final String PATH_FONT = "/ems/media/font/fontawesome-webfont.ttf";
     public static final String PATH_TEMP_DB_ = PATH_TEMP + "/temp.dll";
-
+    public static final String PATH_REPORT_1 = PATH_TEMP + "/Report1.jasper";
     public static final List<MyModel> REPORTS_TYPE = new LinkedList<>();
     public static final List<MyModel> MONTHS = new LinkedList<>();
     public static final List<MyModel> COLORS = new LinkedList<>();
@@ -150,6 +150,11 @@ public class Constants {
             + "star_vote='%s', "
             + "Cast_nm='%s', "
             + "SEX='%s' "
+            + "where ward_no=%s and WardSr_No=%s";
+
+    public static final String Q_U_VOTER_STATUS
+            = "update e_details set  "
+            + "star_vote='%s' "
             + "where ward_no=%s and WardSr_No=%s";
 
     public static final String Q_S_AGE_WISE
@@ -287,8 +292,6 @@ public class Constants {
             + "where booth_no=%s and Cast_nm is not null and Cast_nm<>'' "
             + "group by Cast_nm "
             + "order by Cast_nm";
-    
-     
 
     public static final String Q_S_COMMUNITY_WISE_
             = "select "
@@ -307,7 +310,7 @@ public class Constants {
             + "left join booth_master b on a.booth_no=b.booth_no "
             + "where a.booth_no=%s and Cast_nm='%s' "
             + "order by a.FirstNameEnglish";
-    
+
     public static final String Q_S_COMMUNITY_STATUS
             = "select "
             + "Cast_nm, "
@@ -316,7 +319,7 @@ public class Constants {
             + "where  Cast_nm is not null and Cast_nm<>'' "
             + "group by Cast_nm "
             + "order by Cast_nm";
-    
+
     public static final String Q_S_COMMUNITY_STATUS_
             = "select "
             + "ifnull(a.ward_no,''),"
@@ -473,8 +476,8 @@ public class Constants {
             + "left join booth_master b on a.booth_no=b.booth_no "
             + "where a.booth_no=%s and SurNameEnglish='%s' "
             + "order by a.FirstNameEnglish";
-    
-     public static final String Q_S_SURNAME_STATUS
+
+    public static final String Q_S_SURNAME_STATUS
             = "select "
             + "SurNameEnglish, "
             + "count(*) "

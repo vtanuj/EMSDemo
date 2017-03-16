@@ -21,6 +21,7 @@ import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.collections.*;
 import javafx.concurrent.*;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
 import javafx.scene.Parent;
@@ -34,6 +35,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.*;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
+import org.controlsfx.control.Notifications;
 
 /**
  *
@@ -144,13 +146,29 @@ public class Ems extends Application {
                 alert.show();
             } else {
                 log.info("Application started.");
-                Stage loginStage = new Stage(StageStyle.DECORATED);
-                Parent root = FXMLLoader.load(getClass().getResource("/ems/fxml/Login.fxml"));
+//                Stage loginStage = new Stage(StageStyle.DECORATED);
+//                Parent root = FXMLLoader.load(getClass().getResource("/ems/fxml/Login.fxml"));
+//                Scene scene = new Scene(root);
+//                loginStage.setTitle(TITLE_HOME);
+//                loginStage.setScene(scene);
+//                loginStage.getIcons().add(new Image(IMAGE_FAVICON));
+//                loginStage.show();
+
+                Stage homeStage = new Stage(StageStyle.DECORATED);
+                Parent root = FXMLLoader.load(getClass().getResource("/ems/fxml/Home.fxml"));
                 Scene scene = new Scene(root);
-                loginStage.setTitle(TITLE_HOME);
-                loginStage.setScene(scene);
-                loginStage.getIcons().add(new Image(IMAGE_FAVICON));
-                loginStage.show();
+                homeStage.setTitle(TITLE_HOME);
+                homeStage.setScene(scene);
+//            homeStage.setMaximized(true);
+                homeStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent window) {
+                        Notifications.create().title("Welcome back!").text("We missed you.").showWarning();
+                    }
+                });
+
+                homeStage.getIcons().add(new Image(IMAGE_FAVICON));
+                homeStage.show();
             }
         } catch (IOException ex) {
             log.error(ex.getMessage());

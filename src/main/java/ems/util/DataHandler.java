@@ -12,6 +12,7 @@ import static ems.controller.HomeController.electionHistoryTableData;
 import static ems.controller.HomeController.reportTableData;
 import static ems.controller.HomeController.statusUpdateTableData;
 import static ems.controller.HomeController.voterTableData;
+import static ems.util.Constants.PATH_REPORT_1;
 import static ems.util.Constants.PATH_TEMP_DB_;
 import static ems.util.Constants.Q_S_AGE_WISE;
 import static ems.util.Constants.Q_S_ALPHABETIC_WISE;
@@ -46,8 +47,10 @@ import static ems.util.Constants.Q_S_SURNAME_WISE;
 import static ems.util.Constants.Q_S_SURNAME_WISE_;
 import static ems.util.Constants.Q_U_VOTER_DETAILS;
 import static ems.util.Constants.Q_S_WITHOUT_ID_CARD_WISE;
+import static ems.util.Constants.Q_U_VOTER_STATUS;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.net.URL;
@@ -68,6 +71,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRPropertiesUtil;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -399,6 +403,39 @@ public class DataHandler {
         return false;
     }
 
+    public static boolean updateVoterStatus(ObservableList<MyModelSimpleStringProperty> list,
+            String status) {
+        String sqlQuery;
+        Connection con = getConnection();
+        Statement s = null;
+        try {
+            for (MyModelSimpleStringProperty list1 : list) {
+                if (list1.isSelected()) {
+                    sqlQuery = String.format(Q_U_VOTER_STATUS, status, list1.getObj1(), list1.getObj2());
+                    log.info("sqlQuery:" + sqlQuery);
+                    s = con.createStatement();
+                    int i = s.executeUpdate(sqlQuery);
+                    log.info("updateVoterDetails|" + i);
+                }
+            }
+            return true;
+        } catch (SQLException e) {
+            log.error("updateVoterDetails: " + e.getMessage());
+        } finally {
+            try {
+                if (s != null) {
+                    s.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                log.error("updateVoterDetails: " + ex.getMessage());
+            }
+        }
+        return false;
+    }
+
     public static void getReport(String... params) {
         String sqlQuery = "";
         Statement s = null;
@@ -615,9 +652,13 @@ public class DataHandler {
 
     public static boolean pdfDownload(File file, ObservableList<MyModelSimpleStringProperty> data) {
         try {
-            String sourceFileName = "/ems/reports/Report1.jasper";
-            InputStream resourceAsStream = DataHandler.class.getResourceAsStream(sourceFileName);
+            //InputStream resourceAsStream = DataHandler.class.getResourceAsStream(PATH_REPORT_1);
+            InputStream resourceAsStream = new FileInputStream(PATH_REPORT_1);
             Map parameters = new HashMap();
+            parameters.put("reportName", "वय नुसार यदि");
+            parameters.put("wardNo", "74 MCGM");
+            parameters.put("boothLabel", "मतदान केंद्र नाव:");
+            parameters.put("boothName", "विबग्योर हायस्कूल, तळमजला, पार्टिशन क्र.1, होली क्रॉस रोड, आय सी कॉलनी, दहिसर (प), मुंबई 400 103.");
             JasperPrint jasperPrint = JasperFillManager.fillReport(resourceAsStream, parameters, new JREmptyDataSource());
             JasperExportManager.exportReportToPdfFile(jasperPrint, file.getAbsolutePath());
             return true;

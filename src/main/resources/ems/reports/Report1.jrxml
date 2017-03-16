@@ -3,38 +3,62 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="reportName" class="java.lang.String"/>
+	<parameter name="wardNo" class="java.lang.String"/>
+	<parameter name="boothLabel" class="java.lang.String"/>
+	<parameter name="boothName" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="79" splitType="Stretch">
-			<staticText>
-				<reportElement x="221" y="59" width="100" height="20" uuid="8aa1f118-b015-49b4-884b-ec0ade0081dc"/>
-				<text><![CDATA[Static text]]></text>
-			</staticText>
-		</band>
-	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="61" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch">
-			<staticText>
-				<reportElement x="321" y="43" width="100" height="20" uuid="314559d9-6f8c-4a89-86f6-f0f147133f88"/>
-				<text><![CDATA[Static text]]></text>
-			</staticText>
+		<band height="115" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="115" uuid="be760d69-eea4-4371-bbdc-26df8c50b14d"/>
+			</rectangle>
+			<textField>
+				<reportElement x="125" y="10" width="300" height="22" uuid="9766ac8a-fa17-440b-ab6b-09239b698f61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="./temp/mangal.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="49" width="100" height="22" uuid="c7883e33-623e-467d-b1c6-c9a627114b03"/>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="./temp/mangal.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{boothLabel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="10" width="100" height="22" uuid="020ad63c-85eb-4abe-a9c6-4e6493405915"/>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="./temp/mangal.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{wardNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="49" width="393" height="56" uuid="0bcc1abf-7b88-4452-9e21-f0b3ee2a0562"/>
+				<textElement>
+					<font size="12" isBold="true" pdfFontName="./temp/mangal.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{boothName}]]></textFieldExpression>
+			</textField>
 		</band>
+	</pageHeader>
+	<detail>
+		<band height="147" splitType="Stretch"/>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="398" y="7" width="80" height="20" uuid="48e4c3c7-0337-4857-9049-356d66b6e234"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="478" y="7" width="40" height="20" uuid="b0c52c2c-363a-4674-ab3d-141bdf347498"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
