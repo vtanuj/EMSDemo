@@ -13,6 +13,7 @@ import java.util.List;
 import ems.model.MyModel;
 import ems.model.MyModelConverter;
 import ems.model.MyModelSimpleStringProperty;
+import ems.task.GetData;
 import ems.task.Reports;
 import static ems.util.Constants.COLORS;
 import ems.util.DataHandler;
@@ -1642,18 +1643,13 @@ public class HomeController implements Initializable {
             try {
                 String reportType = this.statusUpdateReportCombo.getSelectionModel().getSelectedItem().getObj1();
                 MyModelSimpleStringProperty m = (MyModelSimpleStringProperty) row.getItem();
-                List<MyModelSimpleStringProperty> statusUpdateDetails = 
-                        DataHandler.getReportDetails(reportType, m.getObj1());
-                Stage statusUpdateStage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ems/fxml/StatusUpdate.fxml"));
-                Parent root = loader.load();
-                StatusUpdateController statusUpdateController = loader.<StatusUpdateController>getController();
-                statusUpdateController.initStatusUpdateDetails(statusUpdateDetails);
-                Scene scene = new Scene(root);
-                statusUpdateStage.setTitle(TITLE_ABOUT);
-                statusUpdateStage.setScene(scene);
-                statusUpdateStage.getIcons().add(new Image(IMAGE_FAVICON));
-                statusUpdateStage.show();
+                Node source = (Node) event.getSource();
+                Window window = source.getScene().getWindow();
+                dialog = JavaFXUtils.dialog(dialog, window);
+                GetData task = new GetData(dialog, window, reportType, m.getObj1());
+                new Thread(task).start();
+                JavaFXUtils.dim(window);
+                dialog.show();
             } catch (Exception ex) {
                 log.error(ex.getMessage());
             }

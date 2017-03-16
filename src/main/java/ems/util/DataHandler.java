@@ -46,6 +46,7 @@ import static ems.util.Constants.Q_S_SURNAME_WISE;
 import static ems.util.Constants.Q_S_SURNAME_WISE_;
 import static ems.util.Constants.Q_U_VOTER_DETAILS;
 import static ems.util.Constants.Q_S_WITHOUT_ID_CARD_WISE;
+import static ems.util.Constants.Q_U_VOTER_STATUS;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -381,6 +382,37 @@ public class DataHandler {
             s = con.createStatement();
             int i = s.executeUpdate(sqlQuery);
             log.info("updateVoterDetails|" + i);
+            return true;
+        } catch (SQLException e) {
+            log.error("updateVoterDetails: " + e.getMessage());
+        } finally {
+            try {
+                if (s != null) {
+                    s.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                log.error("updateVoterDetails: " + ex.getMessage());
+            }
+        }
+        return false;
+    }
+
+    public static boolean updateVoterStatus(ObservableList<MyModelSimpleStringProperty> list,
+            String status) {
+        String sqlQuery;
+        Connection con = getConnection();
+        Statement s = null;
+        try {
+            for (MyModelSimpleStringProperty list1 : list) {
+                sqlQuery = String.format(Q_U_VOTER_STATUS, status, list1.getObj1(), list1.getObj2());
+                log.info("sqlQuery:" + sqlQuery);
+                s = con.createStatement();
+                int i = s.executeUpdate(sqlQuery);
+                log.info("updateVoterDetails|" + i);
+            }
             return true;
         } catch (SQLException e) {
             log.error("updateVoterDetails: " + e.getMessage());
