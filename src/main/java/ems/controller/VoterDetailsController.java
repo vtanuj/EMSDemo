@@ -5,16 +5,12 @@
  */
 package ems.controller;
 
-import static ems.main.Ems.log;
 import ems.model.MyModel;
 import ems.model.MyModelConverter;
-import static ems.util.Constants.COLORS;
 import static ems.util.Constants.GENDER;
 import ems.util.DataHandler;
-import ems.util.DateUtils;
 import ems.util.JavaFXUtils;
 import java.net.URL;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;

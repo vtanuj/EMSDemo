@@ -9,30 +9,44 @@ import static ems.util.Constants.HEADER_SPLASH;
 import static ems.util.Constants.IMAGE_FAVICON;
 import static ems.util.Constants.IMAGE_SPLASH;
 import static ems.util.Constants.PATH_AUTH_DB;
+import static ems.util.Constants.PATH_FONT_UNICODE;
+import static ems.util.Constants.PATH_FONT_UNICODE_;
+import static ems.util.Constants.PATH_REPORT_1;
+import static ems.util.Constants.PATH_REPORT_1_;
 import static ems.util.Constants.PATH_TEMP;
+import static ems.util.Constants.PATH_TEMP_DB;
 import static ems.util.Constants.PATH_TEMP_DB_;
 import static ems.util.Constants.TITLE_HOME;
 import ems.util.MyUtils;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
-import javafx.collections.*;
-import javafx.concurrent.*;
+import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.*;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.*;
+import javafx.stage.Screen;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.Notifications;
@@ -93,44 +107,66 @@ public class Ems extends Application {
 
     @Override
     public void start(final Stage initStage) throws Exception {
-        final Task<ObservableList<String>> friendTask = new Task<ObservableList<String>>() {
+        final Task task = new Task() {
             @Override
-            protected ObservableList<String> call() throws InterruptedException {
+            protected Void call() throws InterruptedException, IOException {
 
-                ObservableList<String> foundFriends = FXCollections.<String>observableArrayList();
-                ObservableList<String> availableFriends = FXCollections.observableArrayList(
-                        "database", "modules"
-                );
+                Files.walk(Paths.get(PATH_TEMP))
+                        .map(Path::toFile)
+                        .sorted((o1, o2) -> -o1.compareTo(o2))
+                        .forEach(File::delete);
 
+                Thread.sleep(400);
                 updateMessage("Loading please wait . . .");
-                for (int i = 0; i < availableFriends.size(); i++) {
-                    Thread.sleep(1000);
-                    File tempFolder = new File(PATH_TEMP);
-                    if (!tempFolder.exists()) {
-                        tempFolder.mkdirs();
-                    }
-                    File authFile = new File(PATH_AUTH_DB);
-                    if (!authFile.exists()) {
-                        MyUtils.createAuthDB();
-                    }
-                    File tempDBFile = new File(PATH_TEMP_DB_);
-                    if (!tempDBFile.exists()) {
-                        MyUtils.copyTempDB();
-                    }
-                    updateProgress(i + 1, availableFriends.size());
-                    String nextFriend = availableFriends.get(i);
-                    foundFriends.add(nextFriend);
-                    updateMessage("Loading . . . " + nextFriend);
+                //Make temp folders
+                updateMessage("Loading . . . folders");
+                File tempFolder = new File(PATH_TEMP);
+                if (!tempFolder.exists()) {
+                    tempFolder.mkdirs();
                 }
+                updateProgress(10, 100);
+
+                //Make auth db
+                updateMessage("Loading . . . Authentication Database");
+                File authFile = new File(PATH_AUTH_DB);
+                if (!authFile.exists()) {
+                    MyUtils.createAuthDB();
+                }
+                updateProgress(20, 100);
+
+                //copy temp db
+                updateMessage("Loading . . . Voters Database");
+                File tempDBFile = new File(PATH_TEMP_DB_);
+                if (!tempDBFile.exists()) {
+                    MyUtils.copyFile(PATH_TEMP_DB, PATH_TEMP_DB_);
+                }
+                updateProgress(30, 100);
+
+                //copy font
+                updateMessage("Loading . . . fonts");
+                File fontFile = new File(PATH_FONT_UNICODE);
+                if (!fontFile.exists()) {
+                    MyUtils.copyFile(PATH_FONT_UNICODE, PATH_FONT_UNICODE_);
+                }
+                updateProgress(40, 100);
+
+                //copy reports
+                updateMessage("Loading . . . reports");
+                File reportFile = new File(PATH_REPORT_1);
+                if (!reportFile.exists()) {
+                    MyUtils.copyFile(PATH_REPORT_1, PATH_REPORT_1_);
+                }
+                updateProgress(70, 100);
+
                 Thread.sleep(400);
                 updateMessage("All modules loaded.");
 
-                return foundFriends;
+                return null;
             }
         };
 
-        showSplash(initStage, friendTask, () -> showLoginStage(initStage));
-        new Thread(friendTask).start();
+        showSplash(initStage, task, () -> showLoginStage(initStage));
+        new Thread(task).start();
     }
 
     private void showLoginStage(Stage stage) {

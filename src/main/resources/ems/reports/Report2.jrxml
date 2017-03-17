@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="0ed6de31-2319-49aa-a89b-11b7e362b44c">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <style name="table">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 1">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 2">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 3">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 4">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 5">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <subDataset name="New Dataset 1" uuid="29ed32b0-f76a-4067-ac72-dc3be80d964f">
+        <queryString language="SQL">
+			<![CDATA[select 
+	trim(ifnull(wardsr_no,'')) wardsr_no,
+	trim(ifnull(unicodefirstname,'')) || '  ' || trim(ifnull(unicodesurname,'')) name,
+	trim(ifnull(unicodesurname,'')) unicodesurname,
+	trim(ifnull(mobile_no,'')) mobile_no,
+	trim(ifnull(sex,'')) sex,
+	trim(ifnull(age,'')) age,
+	trim(ifnull(housenumber,'')) housenumber,
+	trim(ifnull(unicodeaddress,'')) unicodeaddress
+from e_details where booth_no=2]]>
+        </queryString>
+        <field name="wardsr_no" class="java.lang.Object"/>
+        <field name="name" class="java.lang.Object"/>
+        <field name="unicodesurname" class="java.lang.Object"/>
+        <field name="mobile_no" class="java.lang.Object"/>
+        <field name="sex" class="java.lang.Object"/>
+        <field name="age" class="java.lang.Object"/>
+        <field name="housenumber" class="java.lang.Object"/>
+        <field name="unicodeaddress" class="java.lang.Object"/>
+        <group name="unicodesurname">
+            <groupExpression><![CDATA[$F{unicodesurname}]]></groupExpression>
+        </group>
+    </subDataset>
+    <parameter name="reportName" class="java.lang.String"/>
+    <parameter name="wardNo" class="java.lang.String"/>
+    <parameter name="boothLabel" class="java.lang.String"/>
+    <parameter name="boothName" class="java.lang.String"/>
+    <parameter name="parameter1" class="java.lang.String"/>
+    <parameter name="parameter2" class="java.lang.String"/>
+    <parameter name="parameter3" class="java.lang.String"/>
+    <parameter name="parameter4" class="java.lang.String"/>
+    <parameter name="parameter5" class="java.lang.String"/>
+    <parameter name="parameter6" class="java.lang.String"/>
+    <parameter name="parameter7" class="java.lang.String"/>
+    <parameter name="parameter8" class="java.lang.String"/>
+    <parameter name="parameter9" class="java.lang.String"/>
+    <parameter name="parameter10" class="java.lang.String"/>
+    <parameter name="parameter11" class="java.lang.String"/>
+    <parameter name="parameter12" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[select 1]]>
+    </queryString>
+    <field name="1" class="java.lang.Object"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <pageHeader>
+        <band height="115" splitType="Stretch">
+            <rectangle>
+                <reportElement x="0" y="0" width="575" height="115" uuid="be760d69-eea4-4371-bbdc-26df8c50b14d"/>
+            </rectangle>
+            <textField>
+                <reportElement x="125" y="10" width="300" height="22" uuid="9766ac8a-fa17-440b-ab6b-09239b698f61"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{reportName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="13" y="49" width="100" height="22" uuid="c7883e33-623e-467d-b1c6-c9a627114b03"/>
+                <textElement>
+                    <font size="12" isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{boothLabel}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="13" y="10" width="100" height="22" uuid="020ad63c-85eb-4abe-a9c6-4e6493405915"/>
+                <textElement>
+                    <font size="12" isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{wardNo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="125" y="49" width="393" height="56" uuid="0bcc1abf-7b88-4452-9e21-f0b3ee2a0562"/>
+                <textElement>
+                    <font size="12" isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{boothName}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+    <detail>
+        <band height="147" splitType="Stretch">
+            <componentElement>
+                <reportElement key="table 5" style="table 5" x="0" y="0" width="575" height="147" uuid="2bf868aa-7aa6-462e-9373-5fdd60b9ddea"/>
+                <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+                    <datasetRun subDataset="New Dataset 1" uuid="c8b456f0-4176-4115-9175-107358dadbd4">
+                        <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                    </datasetRun>
+                    <jr:column width="40" uuid="51f21b68-640c-49f2-b4b5-89bde8a7f629">
+                        <jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="40" height="30" uuid="37edb089-dc70-4ba6-8428-848b60472173"/>
+                                <text><![CDATA[wardsr_no]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+                            <textField>
+                                <reportElement x="0" y="0" width="40" height="20" uuid="699cdf26-c6cd-4eb8-91a9-76b4d5bcf54b"/>
+                                <textFieldExpression><![CDATA[""+$F{wardsr_no}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="138" uuid="34bf03e1-7068-4b18-894a-68e064a13062">
+                        <jr:groupFooter groupName="unicodesurname">
+                            <jr:cell height="30" rowSpan="1">
+                                <textField evaluationTime="Group" evaluationGroup="unicodesurname">
+                                    <reportElement x="0" y="0" width="138" height="30" uuid="96cef2d3-15fa-4d3b-9876-baac68253fdb"/>
+                                    <textFieldExpression><![CDATA[$F{unicodesurname}]]></textFieldExpression>
+                                </textField>
+                            </jr:cell>
+                        </jr:groupFooter>
+                        <jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="138" height="30" uuid="13a21718-30d7-4f7e-8516-2c2bf73247ba"/>
+                                <text><![CDATA[name]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+                            <textField>
+                                <reportElement x="0" y="0" width="138" height="20" uuid="2a585aa4-c46e-43f5-bf38-85667c769227"/>
+                                <textFieldExpression><![CDATA[""+$F{name}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="90" uuid="1d877af7-049d-421c-8bf2-236310acc939">
+                        <jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="90" height="30" uuid="20b81a6f-2526-4538-af54-557288c3f6cc"/>
+                                <text><![CDATA[mobile_no]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+                            <textField>
+                                <reportElement x="0" y="0" width="90" height="20" uuid="0dd6e51a-3731-4fc1-b70b-d949176c25ff"/>
+                                <textFieldExpression><![CDATA[""+$F{mobile_no}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="40" uuid="6502ac28-77d1-4117-87f4-55176c4dbc2c">
+                        <jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="40" height="30" uuid="8735b5ff-cc0a-4785-93a8-076f7d63d248"/>
+                                <text><![CDATA[sex]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+                            <textField>
+                                <reportElement x="0" y="0" width="40" height="20" uuid="cdebc349-7d7b-4512-b6ae-422740460f2d"/>
+                                <textFieldExpression><![CDATA[""+$F{sex}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="40" uuid="a9a3791b-cdc7-4379-8f58-869895330310">
+                        <jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="40" height="30" uuid="4072b14d-2f39-4e63-83ee-25a98ed05631"/>
+                                <text><![CDATA[age]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+                            <textField>
+                                <reportElement x="0" y="0" width="40" height="20" uuid="c3431821-f7d6-4df9-ab10-ce32adaafaac"/>
+                                <textFieldExpression><![CDATA[""+$F{age}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="40" uuid="d328ad33-d902-44cb-a848-e08832dd1851">
+                        <jr:groupFooter groupName="unicodesurname">
+                            <jr:cell height="30" rowSpan="1"/>
+                        </jr:groupFooter>
+                        <jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="40" height="30" uuid="8cc8e0d2-e601-47a3-8691-983d4a6629d6"/>
+                                <text><![CDATA[housenumber]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+                            <textField>
+                                <reportElement x="0" y="0" width="40" height="20" uuid="809014d7-a262-4661-a0ee-0d12e000f690"/>
+                                <textFieldExpression><![CDATA[""+$F{housenumber}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                    <jr:column width="186" uuid="c224bae8-d7f4-45d3-afaa-66fbe5c1eabd">
+                        <jr:groupFooter groupName="unicodesurname">
+                            <jr:cell height="30" rowSpan="1">
+                                <textField>
+                                    <reportElement x="0" y="0" width="186" height="30" uuid="4c945248-25be-4c6c-b6b5-3308cbfaca51"/>
+                                    <textFieldExpression><![CDATA[$V{unicodesurname_COUNT}]]></textFieldExpression>
+                                </textField>
+                            </jr:cell>
+                        </jr:groupFooter>
+                        <jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+                            <staticText>
+                                <reportElement x="0" y="0" width="186" height="30" uuid="f6443b6b-3cce-4e51-97f6-34fe50c87bd3"/>
+                                <text><![CDATA[unicodeaddress]]></text>
+                            </staticText>
+                        </jr:columnHeader>
+                        <jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+                            <textField>
+                                <reportElement x="0" y="0" width="186" height="20" uuid="489d72dd-73bb-41d8-b463-085ba47f0ab9"/>
+                                <textFieldExpression><![CDATA[""+$F{unicodeaddress}]]></textFieldExpression>
+                            </textField>
+                        </jr:detailCell>
+                    </jr:column>
+                </jr:table>
+            </componentElement>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="32" splitType="Stretch">
+            <textField>
+                <reportElement x="398" y="7" width="80" height="20" uuid="48e4c3c7-0337-4857-9049-356d66b6e234"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="478" y="7" width="40" height="20" uuid="b0c52c2c-363a-4674-ab3d-141bdf347498"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>

@@ -105,17 +105,17 @@ public class MyUtils {
         }
     }
 
-    public static void copyTempDB() {
+    public static void copyFile(String inFile, String outFile) {
         InputStream stream = null;
         OutputStream resStreamOut = null;
         try {
-            stream = MyUtils.class.getResourceAsStream(PATH_TEMP_DB);
+            stream = MyUtils.class.getResourceAsStream(inFile);
             if (stream == null) {
-                throw new Exception("Cannot get resource \"" + PATH_TEMP_DB + "\" from Jar file.");
+                throw new Exception("Cannot get resource \"" + inFile + "\" from Jar file.");
             }
             int readBytes;
             byte[] buffer = new byte[4096];
-            resStreamOut = new FileOutputStream(PATH_TEMP_DB_);
+            resStreamOut = new FileOutputStream(outFile);
             while ((readBytes = stream.read(buffer)) > 0) {
                 resStreamOut.write(buffer, 0, readBytes);
             }

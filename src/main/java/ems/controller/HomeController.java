@@ -13,9 +13,9 @@ import java.util.List;
 import ems.model.MyModel;
 import ems.model.MyModelConverter;
 import ems.model.MyModelSimpleStringProperty;
+import ems.task.DownloadReport;
 import ems.task.GetData;
 import ems.task.Reports;
-import static ems.util.Constants.COLORS;
 import ems.util.DataHandler;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -1242,7 +1242,11 @@ public class HomeController implements Initializable {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(window);
-            DataHandler.exportData(reportType, "1", file);
+            dialog = JavaFXUtils.dialog(dialog, window);
+            DownloadReport task = new DownloadReport(dialog, window, reportType, "1", file);
+            new Thread(task).start();
+            JavaFXUtils.dim(window);
+            dialog.show();
         }
     }
 
@@ -1275,7 +1279,11 @@ public class HomeController implements Initializable {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(window);
-            DataHandler.exportData(reportType, "2", file);
+            dialog = JavaFXUtils.dialog(dialog, window);
+            DownloadReport task = new DownloadReport(dialog, window, reportType, "2", file);
+            new Thread(task).start();
+            JavaFXUtils.dim(window);
+            dialog.show();
         }
     }
 

@@ -36,9 +36,16 @@ public class Constants {
     public static final String PATH_LOCK_FILE = PATH_TEMP + "/system.lock";
     public static final String PATH_AUTH_DB = PATH_TEMP + "/auth.dll";
     public static final String PATH_TEMP_DB = "/ems/temp/temp.dll";
+
     public static final String PATH_FONT = "/ems/media/font/fontawesome-webfont.ttf";
+    public static final String PATH_FONT_UNICODE = "/ems/media/font/ARIALUNI_1.TTF";
+    public static final String PATH_FONT_UNICODE_ = PATH_TEMP + "/ARIALUNI_1.TTF";
+
     public static final String PATH_TEMP_DB_ = PATH_TEMP + "/temp.dll";
-    public static final String PATH_REPORT_1 = PATH_TEMP + "/Report1.jasper";
+
+    public static final String PATH_REPORT_1 = "/ems/reports/Report1.jasper";
+    public static final String PATH_REPORT_1_ = PATH_TEMP + "/Report1.jasper";
+
     public static final List<MyModel> REPORTS_TYPE = new LinkedList<>();
     public static final List<MyModel> MONTHS = new LinkedList<>();
     public static final List<MyModel> COLORS = new LinkedList<>();

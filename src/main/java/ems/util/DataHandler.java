@@ -12,7 +12,7 @@ import static ems.controller.HomeController.electionHistoryTableData;
 import static ems.controller.HomeController.reportTableData;
 import static ems.controller.HomeController.statusUpdateTableData;
 import static ems.controller.HomeController.voterTableData;
-import static ems.util.Constants.PATH_REPORT_1;
+import static ems.util.Constants.PATH_REPORT_1_;
 import static ems.util.Constants.PATH_TEMP_DB_;
 import static ems.util.Constants.Q_S_AGE_WISE;
 import static ems.util.Constants.Q_S_ALPHABETIC_WISE;
@@ -53,10 +53,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -65,20 +63,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRPropertiesUtil;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.apache.commons.lang3.StringUtils;
 
 public class DataHandler {
@@ -583,9 +571,9 @@ public class DataHandler {
         }
     }
 
-    public static void exportData(String reportType, String exportType, File file) {
+    public static boolean exportData(String reportType, String exportType, File file) {
+        boolean status = false;
         try {
-            boolean status = false;
             switch (exportType) {
                 case "1":
                     status = csvDownload(file, reportTableData);
@@ -594,32 +582,10 @@ public class DataHandler {
                     status = pdfDownload(file, reportTableData);
                     break;
             }
-            if (status) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText("Export successful!");
-                alert.setContentText("Successfully exported the report.");
-                ButtonType buttonTypeOne = new ButtonType("Open Folder");
-                ButtonType buttonTypeTwo = new ButtonType("Open File");
-                ButtonType buttonTypeOk = new ButtonType("OK", ButtonData.OK_DONE);
-                alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeOk);
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == buttonTypeOne) {
-                    MyUtils.openFolderWithFileSelected(file.getAbsolutePath());
-                } else if (result.get() == buttonTypeTwo) {
-                    MyUtils.openFile(file.getAbsolutePath());
-                }
-            } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Failure");
-                alert.setHeaderText("Export unsuccessful!");
-                alert.setContentText("Unable to export the report.");
-                alert.showAndWait();
-            }
         } catch (Exception e) {
             JavaFXUtils.exceptionDialog(e);
         }
+        return status;
     }
 
     public static boolean csvDownload(File file, ObservableList<MyModelSimpleStringProperty> data) {
@@ -653,13 +619,25 @@ public class DataHandler {
     public static boolean pdfDownload(File file, ObservableList<MyModelSimpleStringProperty> data) {
         try {
             //InputStream resourceAsStream = DataHandler.class.getResourceAsStream(PATH_REPORT_1);
-            InputStream resourceAsStream = new FileInputStream(PATH_REPORT_1);
+            InputStream resourceAsStream = new FileInputStream(PATH_REPORT_1_);
             Map parameters = new HashMap();
+            parameters.put("parameter1", "अनन क.");
+            parameters.put("parameter2", "नयन अनन कन .");
+            parameters.put("parameter3", "एसर नन.");
+            parameters.put("parameter4", "यददर क.");
+            parameters.put("parameter5", "अनन क.");
+            parameters.put("parameter6", "मतददरदचच नदव");
+            parameters.put("parameter7", "ललग");
+            parameters.put("parameter8", "वय");
+            parameters.put("parameter9", "ममबदईल नन");
+            parameters.put("parameter10", "वमटर आडर नन.");
+            parameters.put("parameter11", "जनम तदररख");
+            parameters.put("parameter12", "पतद");
             parameters.put("reportName", "वय नुसार यदि");
             parameters.put("wardNo", "74 MCGM");
             parameters.put("boothLabel", "मतदान केंद्र नाव:");
             parameters.put("boothName", "विबग्योर हायस्कूल, तळमजला, पार्टिशन क्र.1, होली क्रॉस रोड, आय सी कॉलनी, दहिसर (प), मुंबई 400 103.");
-            JasperPrint jasperPrint = JasperFillManager.fillReport(resourceAsStream, parameters, new JREmptyDataSource());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(resourceAsStream, parameters, getConnection());
             JasperExportManager.exportReportToPdfFile(jasperPrint, file.getAbsolutePath());
             return true;
         } catch (Exception e) {
