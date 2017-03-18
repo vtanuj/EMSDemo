@@ -13,6 +13,12 @@ import static ems.util.Constants.PATH_FONT_UNICODE;
 import static ems.util.Constants.PATH_FONT_UNICODE_;
 import static ems.util.Constants.PATH_REPORT_1;
 import static ems.util.Constants.PATH_REPORT_1_;
+import static ems.util.Constants.PATH_REPORT_2;
+import static ems.util.Constants.PATH_REPORT_2_;
+import static ems.util.Constants.PATH_REPORT_3;
+import static ems.util.Constants.PATH_REPORT_3_;
+import static ems.util.Constants.PATH_REPORT_4;
+import static ems.util.Constants.PATH_REPORT_4_;
 import static ems.util.Constants.PATH_TEMP;
 import static ems.util.Constants.PATH_TEMP_DB;
 import static ems.util.Constants.PATH_TEMP_DB_;
@@ -157,6 +163,21 @@ public class Ems extends Application {
                     MyUtils.copyFile(PATH_REPORT_1, PATH_REPORT_1_);
                 }
                 updateProgress(70, 100);
+                reportFile = new File(PATH_REPORT_2);
+                if (!reportFile.exists()) {
+                    MyUtils.copyFile(PATH_REPORT_2, PATH_REPORT_2_);
+                }
+                updateProgress(80, 100);
+                reportFile = new File(PATH_REPORT_3);
+                if (!reportFile.exists()) {
+                    MyUtils.copyFile(PATH_REPORT_3, PATH_REPORT_3_);
+                }
+                updateProgress(85, 100);
+                reportFile = new File(PATH_REPORT_4);
+                if (!reportFile.exists()) {
+                    MyUtils.copyFile(PATH_REPORT_4, PATH_REPORT_4_);
+                }
+                updateProgress(90, 100);
 
                 Thread.sleep(400);
                 updateMessage("All modules loaded.");

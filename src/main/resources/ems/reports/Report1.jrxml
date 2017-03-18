@@ -76,6 +76,7 @@
 		<parameter name="parameter10" class="java.lang.String"/>
 		<parameter name="parameter11" class="java.lang.String"/>
 		<parameter name="parameter12" class="java.lang.String"/>
+		<parameter name="boothNumber" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[select 
 	trim(ifnull(wardsr_no,'')) wardsr_no,
@@ -92,7 +93,7 @@
 	trim(ifnull(CardNo,'')) CardNo,
 	trim(ifnull(ifnull(strftime('%d-', DOB),'')||substr ("--JanFebMarAprMayJunJulAugSepOctNovDec", strftime ("%m", DOB) * 3, 3)||ifnull(strftime('-%Y', DOB),''),'')) dob,	
 	trim(ifnull(housenumber,'')) ||' - '|| trim(ifnull(unicodeaddress,'')) unicodeaddress
-from e_details where booth_no=1]]>
+from e_details where booth_no=$P{boothNumber}]]>
 		</queryString>
 		<field name="wardsr_no" class="java.lang.Object"/>
 		<field name="slno" class="java.lang.Object"/>
@@ -125,6 +126,7 @@ from e_details where booth_no=1]]>
 	<parameter name="parameter10" class="java.lang.String"/>
 	<parameter name="parameter11" class="java.lang.String"/>
 	<parameter name="parameter12" class="java.lang.String"/>
+	<parameter name="boothNumber" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select 1]]>
 	</queryString>
@@ -172,7 +174,7 @@ from e_details where booth_no=1]]>
 			<componentElement>
 				<reportElement key="table 2" x="0" y="0" width="575" height="147" uuid="1fdbc965-f3c1-4d15-aa67-4c70e248ccfc"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="New Dataset 1" uuid="ee881559-6a98-44bb-a0a2-20e126db750d">
+					<datasetRun subDataset="New Dataset 1" uuid="6cfbbabd-caa1-47e3-aecd-082393fbd884">
 						<datasetParameter name="parameter1">
 							<datasetParameterExpression><![CDATA[$P{parameter1}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -208,6 +210,9 @@ from e_details where booth_no=1]]>
 						</datasetParameter>
 						<datasetParameter name="parameter12">
 							<datasetParameterExpression><![CDATA[$P{parameter12}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="boothNumber">
+							<datasetParameterExpression><![CDATA[$P{boothNumber}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>

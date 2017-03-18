@@ -13,6 +13,9 @@ import static ems.controller.HomeController.reportTableData;
 import static ems.controller.HomeController.statusUpdateTableData;
 import static ems.controller.HomeController.voterTableData;
 import static ems.util.Constants.PATH_REPORT_1_;
+import static ems.util.Constants.PATH_REPORT_2_;
+import static ems.util.Constants.PATH_REPORT_3_;
+import static ems.util.Constants.PATH_REPORT_4_;
 import static ems.util.Constants.PATH_TEMP_DB_;
 import static ems.util.Constants.Q_S_AGE_WISE;
 import static ems.util.Constants.Q_S_ALPHABETIC_WISE;
@@ -51,6 +54,7 @@ import static ems.util.Constants.Q_U_VOTER_STATUS;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -64,6 +68,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javafx.collections.ObservableList;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -156,6 +161,38 @@ public class DataHandler {
             }
         }
         return myModels;
+    }
+
+    public static String getBoothName(String boothNumber) {
+        String sqlQuery = "select ifnull(booth_no,'') || ' - ' || ifnull(booth_name,'') "
+                + "from booth_master where booth_no=" + boothNumber;
+        Connection con = getConnection();
+        Statement s = null;
+        ResultSet rs = null;
+        try {
+            s = con.createStatement();
+            rs = s.executeQuery(sqlQuery);
+            while (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception e) {
+            log.error("getBoothList: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (s != null) {
+                    s.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                log.error("getBoothList: " + ex.getMessage());
+            }
+        }
+        return null;
     }
 
     public static List<MyModel> getWardList() {
@@ -571,15 +608,15 @@ public class DataHandler {
         }
     }
 
-    public static boolean exportData(String reportType, String exportType, File file) {
+    public static boolean exportData(File file, String[] params) {
         boolean status = false;
         try {
-            switch (exportType) {
+            switch (params[0]) {
                 case "1":
                     status = csvDownload(file, reportTableData);
                     break;
                 case "2":
-                    status = pdfDownload(file, reportTableData);
+                    status = pdfDownload(file, reportTableData, params[1], params[2]);
                     break;
             }
         } catch (Exception e) {
@@ -616,34 +653,116 @@ public class DataHandler {
         return false;
     }
 
-    public static boolean pdfDownload(File file, ObservableList<MyModelSimpleStringProperty> data) {
-        try {
-            //InputStream resourceAsStream = DataHandler.class.getResourceAsStream(PATH_REPORT_1);
-            InputStream resourceAsStream = new FileInputStream(PATH_REPORT_1_);
-            Map parameters = new HashMap();
-            parameters.put("parameter1", "अनन क.");
-            parameters.put("parameter2", "नयन अनन कन .");
-            parameters.put("parameter3", "एसर नन.");
-            parameters.put("parameter4", "यददर क.");
-            parameters.put("parameter5", "अनन क.");
-            parameters.put("parameter6", "मतददरदचच नदव");
-            parameters.put("parameter7", "ललग");
-            parameters.put("parameter8", "वय");
-            parameters.put("parameter9", "ममबदईल नन");
-            parameters.put("parameter10", "वमटर आडर नन.");
-            parameters.put("parameter11", "जनम तदररख");
-            parameters.put("parameter12", "पतद");
-            parameters.put("reportName", "वय नुसार यदि");
-            parameters.put("wardNo", "74 MCGM");
-            parameters.put("boothLabel", "मतदान केंद्र नाव:");
-            parameters.put("boothName", "विबग्योर हायस्कूल, तळमजला, पार्टिशन क्र.1, होली क्रॉस रोड, आय सी कॉलनी, दहिसर (प), मुंबई 400 103.");
-            JasperPrint jasperPrint = JasperFillManager.fillReport(resourceAsStream, parameters, getConnection());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, file.getAbsolutePath());
-            return true;
-        } catch (Exception e) {
-            log.error(e.getMessage());
+    public static boolean pdfDownload(File file, ObservableList<MyModelSimpleStringProperty> data, String reportType,
+            String boothNumber)
+            throws FileNotFoundException, JRException {
+        //InputStream resourceAsStream = DataHandler.class.getResourceAsStream(PATH_REPORT_1);                
+        Map parameters = new HashMap();
+        InputStream resourceAsStream;
+        switch (reportType) {
+            case "1":
+                parameters.put("parameter1", "अनु क्र.");
+                parameters.put("parameter2", "न्यू अनु क्र.");
+                parameters.put("parameter3", "एसी नं.");
+                parameters.put("parameter4", "यादी क्र. ");
+                parameters.put("parameter5", "अनु क्र.");
+                parameters.put("parameter6", "मतदाराचे नाव");
+                parameters.put("parameter7", "लिंग");
+                parameters.put("parameter8", "वय");
+                parameters.put("parameter9", "मोबाईल नं");
+                parameters.put("parameter10", "वोटर आडी नं.");
+                parameters.put("parameter11", "जन्म तारीख");
+                parameters.put("parameter12", "पत्ता");
+
+                parameters.put("reportName", "वय नुसार यादी");
+                parameters.put("wardNo", boothNumber);
+                parameters.put("boothLabel", "मतदान केंद्रचे नाव:");
+                parameters.put("boothNumber", boothNumber);
+                parameters.put("boothName", getBoothName(boothNumber));
+                resourceAsStream = new FileInputStream(PATH_REPORT_1_);
+                break;
+            case "3":
+                parameters.put("parameter1", "अनु क्र.");
+                parameters.put("parameter2", "न्यू अनु क्र.");
+                parameters.put("parameter3", "एसी नं.");
+                parameters.put("parameter4", "यादी क्र. ");
+                parameters.put("parameter5", "यादी अनु क्र.");
+                parameters.put("parameter6", "मतदाराचे नाव");
+                parameters.put("parameter7", "वय");
+                parameters.put("parameter8", "लिंग");
+                parameters.put("parameter9", "घर क्र.");                
+                parameters.put("parameter10", "मोबाईल नं");
+                parameters.put("parameter11", "जन्म तारीख");
+                parameters.put("parameter12", "रिमार्क");
+
+                parameters.put("reportName", "पत्ता नुसार यादी");
+                parameters.put("wardNo", boothNumber);
+                parameters.put("boothLabel", "मतदान केंद्रचे नाव:");
+                parameters.put("boothNumber", boothNumber);
+                parameters.put("boothName", getBoothName(boothNumber));
+                resourceAsStream = new FileInputStream(PATH_REPORT_3_);
+                break;
+            case "8":
+                parameters.put("parameter1", "अनु क्र.");
+                parameters.put("parameter2", "न्यू अनु क्र.");
+                parameters.put("parameter3", "एसी नं.");
+                parameters.put("parameter4", "यादी क्र. ");
+                parameters.put("parameter5", "यादी अनु क्र.");
+                parameters.put("parameter6", "मतदाराचे नाव");
+                parameters.put("parameter7", "वय");
+                parameters.put("parameter8", "लिंग");
+                parameters.put("parameter9", "घर क्र.");                
+                parameters.put("parameter10", "मोबाईल नं");
+                parameters.put("parameter11", "जन्म तारीख");
+                parameters.put("parameter12", "रंग रिमार्क");
+
+                parameters.put("reportName", "रंग नुसार यादी");
+                parameters.put("wardNo", boothNumber);
+                parameters.put("boothLabel", "मतदान केंद्रचे नाव:");
+                parameters.put("boothNumber", boothNumber);
+                parameters.put("boothName", getBoothName(boothNumber));
+                resourceAsStream = new FileInputStream(PATH_REPORT_4_);
+                break;
+            case "12":
+                parameters.put("parameter1", "अनु क्र.");
+                parameters.put("parameter2", "मतदाराचे नाव");
+                parameters.put("parameter3", "मोबाईल नं");
+                parameters.put("parameter4", "लिंग");
+                parameters.put("parameter5", "वय");
+                parameters.put("parameter6", "घर क्र.");
+                parameters.put("parameter7", "पत्ता");
+
+                parameters.put("reportName", "आडनाव नुसार यादी");
+                parameters.put("wardNo", boothNumber);
+                parameters.put("boothLabel", "मतदान केंद्रचे नाव:");
+                parameters.put("boothNumber", boothNumber);
+                parameters.put("boothName", getBoothName(boothNumber));
+                resourceAsStream = new FileInputStream(PATH_REPORT_2_);
+                break;
+            default:
+                parameters.put("parameter1", "अनु क्र.");
+                parameters.put("parameter2", "न्यू अनु क्र.");
+                parameters.put("parameter3", "एसी नं.");
+                parameters.put("parameter4", "यादी क्र. ");
+                parameters.put("parameter5", "अनु क्र.");
+                parameters.put("parameter6", "मतदाराचे नाव");
+                parameters.put("parameter7", "लिंग");
+                parameters.put("parameter8", "वय");
+                parameters.put("parameter9", "मोबाईल नं");
+                parameters.put("parameter10", "वोटर आडी नं.");
+                parameters.put("parameter11", "जन्म तारीख");
+                parameters.put("parameter12", "पत्ता");
+                parameters.put("reportName", "यादी");
+                parameters.put("wardNo", boothNumber);
+                parameters.put("boothLabel", "मतदान केंद्रचे नाव:");
+                parameters.put("boothNumber", boothNumber);
+                parameters.put("boothName", getBoothName(boothNumber));
+                resourceAsStream = new FileInputStream(PATH_REPORT_1_);
+                break;
         }
-        return false;
+        JasperPrint jasperPrint = JasperFillManager.fillReport(resourceAsStream, parameters, getConnection());
+        JasperExportManager.exportReportToPdfFile(jasperPrint, file.getAbsolutePath());
+        return true;
     }
 
 }

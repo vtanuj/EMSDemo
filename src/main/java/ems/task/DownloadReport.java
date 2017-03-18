@@ -25,16 +25,13 @@ import javafx.stage.Window;
  */
 public class DownloadReport extends Task<Void> {
 
-    String reportType;
-    String exportType;
+    String[] params;
     File file;
     boolean status;
 
-    public DownloadReport(Stage stage, Window window, String reportType, String exportType, File file) {
-        this.reportType = reportType;
-        this.exportType = exportType;
+    public DownloadReport(Stage stage, Window window, File file, String... params) {
+        this.params = params;
         this.file = file;
-        this.reportType = reportType;
         setOnSucceeded((WorkerStateEvent event) -> {
             if (stage != null) {
                 window.getScene().getRoot().setEffect(null);
@@ -73,7 +70,7 @@ public class DownloadReport extends Task<Void> {
     @Override
     protected Void call() throws Exception {
         try {
-            status = DataHandler.exportData(reportType, exportType, file);
+            status = DataHandler.exportData(file, params);
         } catch (Exception e) {
             log.error(e.getMessage());
         }

@@ -45,6 +45,12 @@ public class Constants {
 
     public static final String PATH_REPORT_1 = "/ems/reports/Report1.jasper";
     public static final String PATH_REPORT_1_ = PATH_TEMP + "/Report1.jasper";
+    public static final String PATH_REPORT_2 = "/ems/reports/Report2.jasper";
+    public static final String PATH_REPORT_2_ = PATH_TEMP + "/Report2.jasper";
+    public static final String PATH_REPORT_3 = "/ems/reports/Report3.jasper";
+    public static final String PATH_REPORT_3_ = PATH_TEMP + "/Report3.jasper";
+    public static final String PATH_REPORT_4 = "/ems/reports/Report4.jasper";
+    public static final String PATH_REPORT_4_ = PATH_TEMP + "/Report4.jasper";
 
     public static final List<MyModel> REPORTS_TYPE = new LinkedList<>();
     public static final List<MyModel> MONTHS = new LinkedList<>();

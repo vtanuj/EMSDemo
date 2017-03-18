@@ -1217,9 +1217,14 @@ public class HomeController implements Initializable {
     private void onReportCSVDownload(ActionEvent event) {
         Node source = (Node) event.getSource();
         Window window = source.getScene().getWindow();
-        String reportType = null;
+        String reportType = null, boothNo = null;
         try {
             reportType = this.reportType.getSelectionModel().getSelectedItem().getObj1();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        try {
+            boothNo = this.boothNo.getSelectionModel().getSelectedItem().getObj1();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -1243,7 +1248,7 @@ public class HomeController implements Initializable {
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(window);
             dialog = JavaFXUtils.dialog(dialog, window);
-            DownloadReport task = new DownloadReport(dialog, window, reportType, "1", file);
+            DownloadReport task = new DownloadReport(dialog, window, file, "1", reportType, boothNo);
             new Thread(task).start();
             JavaFXUtils.dim(window);
             dialog.show();
@@ -1254,9 +1259,14 @@ public class HomeController implements Initializable {
     private void onReportPDFDownload(ActionEvent event) {
         Node source = (Node) event.getSource();
         Window window = source.getScene().getWindow();
-        String reportType = null;
+        String reportType = null, boothNo = null;
         try {
             reportType = this.reportType.getSelectionModel().getSelectedItem().getObj1();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        try {
+            boothNo = this.boothNo.getSelectionModel().getSelectedItem().getObj1();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -1280,7 +1290,7 @@ public class HomeController implements Initializable {
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(window);
             dialog = JavaFXUtils.dialog(dialog, window);
-            DownloadReport task = new DownloadReport(dialog, window, reportType, "2", file);
+            DownloadReport task = new DownloadReport(dialog, window, file, "2", reportType, boothNo);
             new Thread(task).start();
             JavaFXUtils.dim(window);
             dialog.show();
