@@ -123,6 +123,46 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
 	<subDataset name="New Dataset 1" uuid="29ed32b0-f76a-4067-ac72-dc3be80d964f">
 		<parameter name="parameter1" class="java.lang.String"/>
 		<parameter name="parameter2" class="java.lang.String"/>
@@ -131,29 +171,50 @@
 		<parameter name="parameter5" class="java.lang.String"/>
 		<parameter name="parameter6" class="java.lang.String"/>
 		<parameter name="parameter7" class="java.lang.String"/>
+		<parameter name="parameter8" class="java.lang.String"/>
+		<parameter name="parameter9" class="java.lang.String"/>
+		<parameter name="parameter10" class="java.lang.String"/>
+		<parameter name="parameter11" class="java.lang.String"/>
+		<parameter name="parameter12" class="java.lang.String"/>
 		<parameter name="boothNumber" class="java.lang.String"/>
 		<queryString>
 			<![CDATA[select 
 	trim(ifnull(wardsr_no,'')) wardsr_no,
+	trim(ifnull(slno,'')) slno,
+	trim(ifnull(ac_no,'')) ac_no,
+	trim(ifnull(part_no,'')) part_no,
+	trim(ifnull(serialinpart,'')) serialinpart,
 	trim(ifnull(unicodefirstname,'')) || '  ' || trim(ifnull(unicodesurname,'')) name,
-	trim(ifnull(unicodesurname,'')) unicodesurname,
-	trim(ifnull(mobile_no,'')) mobile_no,
-	trim(ifnull(sex,'')) sex,
 	trim(ifnull(age,'')) age,
+	trim(ifnull(sex,'')) sex,
 	trim(ifnull(housenumber,'')) housenumber,
-	trim(ifnull(unicodeaddress,'')) unicodeaddress
+	trim(ifnull(mobile_no,'')) mobile_no,
+	trim(ifnull(ifnull(strftime('%d-', DOB),'')||substr ("--JanFebMarAprMayJunJulAugSepOctNovDec", strftime ("%m", DOB) * 3, 3)||ifnull(strftime('-%Y', DOB),''),'')) dob,	
+	trim(ifnull(unicodeaddress,'')) unicodeaddress,
+	case 
+when star_vote=1 then 'Our - आमच्या' 
+when star_vote=2 then 'Opposite - उलट' 
+when star_vote=3 then 'Unpredictable - गाठता' 
+when star_vote=4 then 'Others - इतर' 
+else ''
+end remarks
 from e_details where booth_no=$P{boothNumber}]]>
 		</queryString>
 		<field name="wardsr_no" class="java.lang.Object"/>
+		<field name="slno" class="java.lang.Object"/>
+		<field name="ac_no" class="java.lang.Object"/>
+		<field name="part_no" class="java.lang.Object"/>
+		<field name="serialinpart" class="java.lang.Object"/>
 		<field name="name" class="java.lang.Object"/>
-		<field name="unicodesurname" class="java.lang.Object"/>
-		<field name="mobile_no" class="java.lang.Object"/>
-		<field name="sex" class="java.lang.Object"/>
 		<field name="age" class="java.lang.Object"/>
+		<field name="sex" class="java.lang.Object"/>
 		<field name="housenumber" class="java.lang.Object"/>
+		<field name="mobile_no" class="java.lang.Object"/>
+		<field name="dob" class="java.lang.Object"/>
 		<field name="unicodeaddress" class="java.lang.Object"/>
+		<field name="remarks" class="java.lang.Object"/>
 		<group name="unicodesurname">
-			<groupExpression><![CDATA[$F{unicodesurname}]]></groupExpression>
+			<groupExpression><![CDATA[$F{unicodeaddress}]]></groupExpression>
 		</group>
 	</subDataset>
 	<parameter name="reportName" class="java.lang.String"/>
@@ -218,9 +279,9 @@ from e_details where booth_no=$P{boothNumber}]]>
 	<detail>
 		<band height="147" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 5" style="table 5" x="0" y="0" width="575" height="147" uuid="2bf868aa-7aa6-462e-9373-5fdd60b9ddea"/>
+				<reportElement key="table 7" style="table 7" x="0" y="0" width="575" height="147" uuid="d6fb792a-dba4-4f9d-8f36-491575696a02"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="New Dataset 1" uuid="310b3efa-a4b4-4127-ae8e-8748df55204a">
+					<datasetRun subDataset="New Dataset 1" uuid="3d34e7b0-4307-4da2-8335-939799428e38">
 						<datasetParameter name="parameter1">
 							<datasetParameterExpression><![CDATA[$P{parameter1}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -242,171 +303,258 @@ from e_details where booth_no=$P{boothNumber}]]>
 						<datasetParameter name="parameter7">
 							<datasetParameterExpression><![CDATA[$P{parameter7}]]></datasetParameterExpression>
 						</datasetParameter>
+						<datasetParameter name="parameter8">
+							<datasetParameterExpression><![CDATA[$P{parameter8}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="parameter9">
+							<datasetParameterExpression><![CDATA[$P{parameter9}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="parameter10">
+							<datasetParameterExpression><![CDATA[$P{parameter10}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="parameter11">
+							<datasetParameterExpression><![CDATA[$P{parameter11}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="parameter12">
+							<datasetParameterExpression><![CDATA[$P{parameter12}]]></datasetParameterExpression>
+						</datasetParameter>
 						<datasetParameter name="boothNumber">
 							<datasetParameterExpression><![CDATA[$P{boothNumber}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="40" uuid="51f21b68-640c-49f2-b4b5-89bde8a7f629">
-						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
+					<jr:columnGroup width="290" uuid="ec230bb7-958f-42d6-8418-1673ea107e54">
+						<jr:columnGroup width="290" uuid="0c4a6c5c-70a9-4375-882f-85e4439b0252">
+							<jr:groupHeader groupName="unicodesurname">
+								<jr:cell height="30" rowSpan="1">
+									<textField evaluationTime="Group" evaluationGroup="unicodesurname">
+										<reportElement x="0" y="0" width="290" height="30" uuid="8d63398f-ae26-4ac5-8567-1a4b5ae41dee"/>
+										<textElement verticalAlignment="Middle">
+											<font size="8" isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<textFieldExpression><![CDATA[" "+$F{unicodeaddress}]]></textFieldExpression>
+									</textField>
+								</jr:cell>
+							</jr:groupHeader>
+							<jr:column width="40" uuid="c6fa281d-4bed-4d9f-8364-75befdf707af">
+								<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="30" uuid="c49e2ded-6ca8-43f2-aaaf-6437d36f1df6"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$P{parameter1}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="20" uuid="5f202d1b-0e7a-452b-a4e7-b8c0ed59404a"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle"/>
+										<textFieldExpression><![CDATA[""+$F{wardsr_no}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="40" uuid="b0a4c7de-5345-4e96-a00d-55ce7bdba3ff">
+								<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="30" uuid="04e0c6e5-1bad-4fbe-b59e-f7106f2e7426"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$P{parameter2}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="20" uuid="23b6299b-8221-4b6d-b351-44adfb72e8b7"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle"/>
+										<textFieldExpression><![CDATA[""+$F{slno}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="40" uuid="5c8cc733-6ff6-4f6a-ac07-e778b837ce62">
+								<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="30" uuid="939d8041-5042-47d4-af54-d0962e002ec4"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$P{parameter3}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="20" uuid="7cdb836e-17f2-459f-b113-fac459ea94a0"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle"/>
+										<textFieldExpression><![CDATA[""+$F{ac_no}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="40" uuid="18912cca-0a2f-4f6b-b428-4a8e185fa497">
+								<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="30" uuid="e32fc09d-af4c-4c22-90e9-8f06da83b908"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$P{parameter4}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="20" uuid="883d4172-4ff2-48e6-8ad6-960950607f66"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle"/>
+										<textFieldExpression><![CDATA[""+$F{part_no}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="40" uuid="b0da41a3-cd14-489a-980d-8d0ad16f7d13">
+								<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="30" uuid="14a9e38e-3990-404e-b19a-736a71d449db"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$P{parameter5}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="40" height="20" uuid="278e8c5a-3460-423f-bddd-2b50d0c79132"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle"/>
+										<textFieldExpression><![CDATA[""+$F{serialinpart}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="90" uuid="632a25e3-33b4-4b35-b249-db46de971207">
+								<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="90" height="30" uuid="7a8d3e94-3508-49f0-bb57-ee4270c2674c"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$P{parameter6}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+									<textField>
+										<reportElement x="0" y="0" width="90" height="20" uuid="5ef77ffa-87b1-4296-85e0-2fe10b9414e6"/>
+										<textElement verticalAlignment="Middle">
+											<font size="8" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+										</textElement>
+										<textFieldExpression><![CDATA[" "+$F{name}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+						</jr:columnGroup>
+					</jr:columnGroup>
+					<jr:column width="40" uuid="f5936999-e08d-44a2-9259-db96a1b7000a">
+						<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="40" height="30" uuid="2b3b6788-e4fa-47db-b6ca-0efc84b9e492"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$P{parameter1}]]></textFieldExpression>
-							</textField>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="40" height="20" uuid="699cdf26-c6cd-4eb8-91a9-76b4d5bcf54b"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[""+$F{wardsr_no}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="138" uuid="34bf03e1-7068-4b18-894a-68e064a13062">
-						<jr:groupFooter groupName="unicodesurname">
-							<jr:cell height="30" rowSpan="1">
-								<textField evaluationTime="Group" evaluationGroup="unicodesurname">
-									<reportElement x="0" y="0" width="138" height="30" uuid="96cef2d3-15fa-4d3b-9876-baac68253fdb"/>
-									<textElement verticalAlignment="Middle">
-										<font size="9" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-									</textElement>
-									<textFieldExpression><![CDATA[" "+$F{unicodesurname}]]></textFieldExpression>
-								</textField>
-							</jr:cell>
-						</jr:groupFooter>
-						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="138" height="30" uuid="9cd19fad-6a98-4045-94b7-3be9022728c4"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$P{parameter2}]]></textFieldExpression>
-							</textField>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="138" height="20" uuid="2a585aa4-c46e-43f5-bf38-85667c769227"/>
-								<textElement verticalAlignment="Middle">
-									<font size="9" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[" "+$F{name}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="90" uuid="1d877af7-049d-421c-8bf2-236310acc939">
-						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="30" uuid="82d35185-3f86-45f3-9328-ee1fd41d291a"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$P{parameter3}]]></textFieldExpression>
-							</textField>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="0dd6e51a-3731-4fc1-b70b-d949176c25ff"/>
-								<textElement verticalAlignment="Middle">
-									<font pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[" "+$F{mobile_no}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="40" uuid="6502ac28-77d1-4117-87f4-55176c4dbc2c">
-						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="40" height="30" uuid="724df9e1-ac9e-46b2-862d-c3a44c859a21"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$P{parameter4}]]></textFieldExpression>
-							</textField>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="40" height="20" uuid="cdebc349-7d7b-4512-b6ae-422740460f2d"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[""+$F{sex}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="40" uuid="a9a3791b-cdc7-4379-8f58-869895330310">
-						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="40" height="30" uuid="c1f058f5-6ff9-4f6e-861c-5175ef02e619"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$P{parameter5}]]></textFieldExpression>
-							</textField>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="40" height="20" uuid="c3431821-f7d6-4df9-ab10-ce32adaafaac"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[""+$F{age}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="40" uuid="d328ad33-d902-44cb-a848-e08832dd1851">
-						<jr:groupFooter groupName="unicodesurname">
-							<jr:cell height="30" rowSpan="1"/>
-						</jr:groupFooter>
-						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="40" height="30" uuid="725b0e52-b9a3-45d1-833b-509cf4aa9659"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$P{parameter6}]]></textFieldExpression>
-							</textField>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="40" height="20" uuid="809014d7-a262-4661-a0ee-0d12e000f690"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-								</textElement>
-								<textFieldExpression><![CDATA[""+$F{housenumber}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="186" uuid="c224bae8-d7f4-45d3-afaa-66fbe5c1eabd">
-						<jr:groupFooter groupName="unicodesurname">
-							<jr:cell height="30" rowSpan="1">
-								<textField>
-									<reportElement x="0" y="0" width="186" height="30" uuid="4c945248-25be-4c6c-b6b5-3308cbfaca51"/>
-									<textElement verticalAlignment="Middle"/>
-									<textFieldExpression><![CDATA[" "+$V{unicodesurname_COUNT}]]></textFieldExpression>
-								</textField>
-							</jr:cell>
-						</jr:groupFooter>
-						<jr:columnHeader style="table 5_CH" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="186" height="30" uuid="b1bda7e3-974c-4a7e-8225-6de6e01a7b47"/>
+								<reportElement x="0" y="0" width="40" height="30" uuid="2daee225-228d-4bce-9bb8-5717fd6807be"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{parameter7}]]></textFieldExpression>
 							</textField>
 						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+						<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="2" y="0" width="184" height="20" uuid="489d72dd-73bb-41d8-b463-085ba47f0ab9"/>
-								<textElement verticalAlignment="Middle">
-									<font size="9" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								<reportElement x="0" y="0" width="40" height="20" uuid="02843d82-fceb-4b45-bec0-613d62b15621"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[""+$F{age}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="d459cda0-898d-411f-b02b-df5a491579f5">
+						<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="f47591b3-56ba-479a-b80d-932eab50690a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 								</textElement>
-								<textFieldExpression><![CDATA[""+$F{unicodeaddress}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$P{parameter8}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="20" uuid="59e085ac-87bd-4016-a5f7-cd9da7754bf7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[""+$F{sex}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="58870068-e4f6-44c2-becb-bb574fbbdae0">
+						<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" uuid="40824730-d29a-4167-bf91-8abf77363a10"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{parameter9}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="20" uuid="fd3099ca-50de-4c75-b1ce-e49ffa3f0f09"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[""+$F{housenumber}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="3812ed39-f8cc-4ad6-b856-fc97198db4f4">
+						<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="30" uuid="a13bbb42-9323-4347-9f7a-b2cf553fd65b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{parameter10}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="20" uuid="8628bc2d-3d5b-47ec-8164-02a9f780ffb3"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[" "+$F{mobile_no}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="c6eeecbb-6934-41f1-ad4e-072940367fbe">
+						<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="30" uuid="e632d931-d2ed-4d60-966a-7d4fdc622211"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{parameter11}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="20" uuid="bac70c48-a36c-434c-8eeb-a6a3f7d7cbb9"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[" "+$F{dob}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="45" uuid="77cf793b-1e36-4c99-b4fa-e2ff57546656">
+						<jr:columnHeader style="table 7_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="45" height="30" uuid="bcdb1416-7e64-4be6-8038-9dbbc4c9f94d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{parameter12}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell style="table 7_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="45" height="20" uuid="287a9591-0661-44a5-8bd1-4aaba9efb4fb"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8" pdfFontName="./temp/ARIALUNI_1.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[""+$F{remarks}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

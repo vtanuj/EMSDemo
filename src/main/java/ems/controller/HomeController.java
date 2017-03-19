@@ -16,6 +16,7 @@ import ems.model.MyModelSimpleStringProperty;
 import ems.task.DownloadReport;
 import ems.task.GetData;
 import ems.task.Reports;
+import static ems.util.Constants.COLORS;
 import ems.util.DataHandler;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -381,11 +382,11 @@ public class HomeController implements Initializable {
 
         statusUpdateReportCombo.setConverter(new MyModelConverter());
 
-        List<MyModel> COLORS = new LinkedList<>();
-        COLORS.add(new MyModel("0", "Please Choose"));
-        COLORS.add(new MyModel("101", "Surname Wise"));
-        COLORS.add(new MyModel("102", "Community Wise"));
-        for (MyModel report : COLORS) {
+        List<MyModel> COLORS1 = new LinkedList<>();
+        COLORS1.add(new MyModel("0", "Please Choose"));
+        COLORS1.add(new MyModel("101", "Surname Wise"));
+        COLORS1.add(new MyModel("102", "Community Wise"));
+        for (MyModel report : COLORS1) {
             statusUpdateReportComboData.add(report);
         }
         statusUpdateReportCombo.setItems(statusUpdateReportComboData);
@@ -674,8 +675,11 @@ public class HomeController implements Initializable {
         xAxis.setCategories(barChartData);
         barChart.getData().add(series);
 
-        pieChart.setTitle("Gender Wise");
-        pieChart1.setTitle("Color Wise");
+//        pieChart.setTitle("Gender Wise");
+//        pieChart1.setTitle("Color Wise");
+        pieChart.setLegendVisible(false);
+        pieChart1.setLegendVisible(false);
+        barChart.setLegendVisible(false);
 
         pieChartData.forEach(data
                 -> data.nameProperty().bind(
@@ -821,7 +825,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void onReportGoClick(ActionEvent event) {
-        String reportType = null, boothNo = null;
+        String reportType = null, boothNo = null, color = null;
         Node source = (Node) event.getSource();
         Window window = source.getScene().getWindow();
         try {
@@ -835,17 +839,30 @@ public class HomeController implements Initializable {
             } catch (Exception e) {
                 log.error(e.getMessage());
             }
+            try {
+                color = this.colorCombo.getSelectionModel().getSelectedItem().getObj1();
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
             if (reportType == null || reportType.equals("0")) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Report Type not selected!");
                 alert.setContentText("Please choose a Report Type.");
                 alert.showAndWait();
-            } else if (boothNo == null || boothNo.equals("0")) {
+            } else if (!(reportType.equals("6") || reportType.equals("9")) 
+                    && (boothNo == null || boothNo.equals("0"))) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("Booth No not selected!");
                 alert.setContentText("Please choose a Booth No.");
+                alert.showAndWait();
+            }  else if (!(reportType.equals("8") || reportType.equals("9")) 
+                    && (color == null || color.equals("0"))) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Color Code not selected!");
+                alert.setContentText("Please choose a Color Code");
                 alert.showAndWait();
             } else {
                 dialog = JavaFXUtils.dialog(dialog, window);
@@ -1143,7 +1160,6 @@ public class HomeController implements Initializable {
                         reportColumn9.setVisible(false);
                         reportColumn10.setVisible(false);
                         reportColumn11.setVisible(false);
-                        String color = this.colorCombo.getSelectionModel().getSelectedItem().getObj1();
                         task = new Reports(dialog, window, reportType, boothNo, color);
                         break;
                     case "9":
@@ -1170,7 +1186,6 @@ public class HomeController implements Initializable {
                         reportColumn9.setVisible(false);
                         reportColumn10.setVisible(false);
                         reportColumn11.setVisible(false);
-                        color = this.colorCombo.getSelectionModel().getSelectedItem().getObj1();
                         task = new Reports(dialog, window, reportType, boothNo, color);
                         break;
                 }

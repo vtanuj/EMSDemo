@@ -210,13 +210,17 @@ public class VoterDetailsController implements Initializable {
     @FXML
     private void updateAction(ActionEvent event) {
 
-        DataHandler.updateVoterDetails(emailId.getText(), mobileNumber.getText(), altMobileNumber.getText(),
-                dateOfBirth.getValue().toString(),
-                this.color.getSelectionModel().getSelectedItem().getObj1(),
-                this.community.getSelectionModel().getSelectedItem().getObj1(),
-                this.gender.getSelectionModel().getSelectedItem().getObj1(),
-                voterDetails.getObj1(),
-                voterDetails.getObj3());
+        String emailId = this.emailId.getText();
+        String mobileNo = mobileNumber.getText();
+        String alternatMobileNo = altMobileNumber.getText();
+        String dob = dateOfBirth.getValue() != null ? dateOfBirth.getValue().toString() : null;
+        String age = this.color.getSelectionModel().getSelectedItem().getObj1();
+        String community = this.community.getSelectionModel().getSelectedItem().getObj1();
+        String gender = this.gender.getSelectionModel().getSelectedItem().getObj1();
+        String wardNo = voterDetails.getObj1();
+        String wardSrNo = voterDetails.getObj3();
+        DataHandler.updateVoterDetails(emailId, mobileNo, alternatMobileNo, dob, age, community, gender, wardNo,
+                wardSrNo);
 
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
